@@ -1,0 +1,46 @@
+﻿@*@model IEnumerable<ClassLibrary.Models.AwardModel>*@
+@model PagedList.IPagedList<ClassLibrary.Models.AwardModel>
+
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            AwardName
+        </th>
+        <th>
+            ActiveInd
+        </th>
+        <th>
+            Comments
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AwardName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveInd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AwardID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AwardID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AwardID })
+            </td>
+        </tr>
+    }
+</table>

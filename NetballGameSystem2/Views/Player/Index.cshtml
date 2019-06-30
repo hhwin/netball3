@@ -1,0 +1,109 @@
+﻿@model ClassLibrary.Models.PlayerIndexModel
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<h4>Player details and search</h4>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1" style="width:180px">
+            @Html.LabelFor(model => model.teamName)
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(model => model.teamID,
+         new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.teamID),
+         "Value",
+         "Text",
+         Model.teamID),
+         new { @class = "select" })
+            @Html.ValidationMessageFor(model => model.teamID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p style="margin-top:0; margin-bottom:0; line-height:.5"><br /></p>
+    <div class="row">
+        <div class="col-md-1" style="width:180px">
+            <b>Find by player name</b>
+        </div>
+        <div class="col-md-3">
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        </div>
+        <div class="col-md-1">
+            <input type="submit" value="Search" />
+        </div>
+    </div>
+</div>
+}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Team Name
+            </th>
+            <th>
+                Player Name
+            </th>
+            <th>
+                Mobile
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Captain
+            </th>
+            <th></th>
+        </tr>
+
+        @if (Model.PlayerPagedList != null && Model.PlayerPagedList.PageCount > 0)
+        {
+            foreach (var item in Model.PlayerPagedList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.teamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.playerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.captain)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { playerID = item.personID, teamID = item.teamID }) |
+                        @Html.ActionLink("Delete", "Delete", new { playerID = item.personID, teamID = item.teamID }) |
+                        @Html.ActionLink(
+                            controllerName: "PlayerMatch",
+                            linkText: "Game History",
+                            actionName: "Index",
+                            routeValues: new { playerID = item.personID, controllerName = "Player", viewName = "Index" },
+                            htmlAttributes: null
+                            )
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+    @if (Model.PlayerPagedList != null && Model.PlayerPagedList.PageCount > 0)
+    {
+        <div>
+            Page @(Model.PlayerPagedList.PageCount < Model.PlayerPagedList.PageNumber ? 0 : Model.PlayerPagedList.PageNumber) of @Model.PlayerPagedList.PageCount
+            @Html.PagedListPager(Model.PlayerPagedList, page => Url.Action("Index", new { page, teamID = ViewBag.teamID, playerID = ViewBag.playerID, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    }
+
+<a href="javascript:void(0);" onclick="history.go(-1);">Go to previous page</a>

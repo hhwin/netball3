@@ -1,0 +1,398 @@
+﻿@model ClassLibrary.Models.GameModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h4>Game Details</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.gameID)
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.courtName, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.courtID,
+                        new SelectList(ClassLibrary.Logic.CourtLogic.CourtSelectList.GetCourtSelectListStatic(Model.courtID),
+                        "Value",
+                        "Text",
+                        Model.courtID),
+                        new { id = "courtID", style = "width: 150px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.courtName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.tournamentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.tournamentName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tournamentName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.matchNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.matchNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.matchNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.venue, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.venue, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.venue, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.datePlayed, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.datePlayed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.datePlayed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.primaryUmpire, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.primaryUmpireID,
+                        new SelectList(ClassLibrary.Logic.PersonLogic.PersonSelectListLogic.GetPersonSelectListStatic(Model.primaryUmpireID??0, "-- Select Umpire --"),
+                        "Value",
+                        "Text",
+                        Model.primaryUmpireID),
+                        new { id = "primaryUmpireID", style = "width: 150px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.primaryUmpire, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.secondaryUmpire, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.secondaryUmpireID,
+                        new SelectList(ClassLibrary.Logic.PersonLogic.PersonSelectListLogic.GetPersonSelectListStatic(Model.secondaryUmpireID??0, "-- Select Secondary Umpire --"),
+                        "Value",
+                        "Text",
+                        Model.secondaryUmpireID),
+                        new { id = "secondaryUmpireID", style = "width: 150px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.secondaryUmpire, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.reserveUmpire, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.reserveUmpireID,
+                        new SelectList(ClassLibrary.Logic.PersonLogic.PersonSelectListLogic.GetPersonSelectListStatic(Model.reserveUmpireID??0, "-- Select Reserve Umpire --"),
+                        "Value",
+                        "Text",
+                        Model.reserveUmpireID),
+                        new { id = "reserveUmpireID", style = "width: 150px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.reserveUmpire, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.startTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.startTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.startTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.fullTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.fullTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fullTime, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.extraTimeEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.extraTimeEnd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.extraTimeEnd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.team1Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.team1ID,
+                        new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.team1ID),
+                        "Value",
+                        "Text",
+                        Model.team1ID),
+                        new { id = "team1ID", style = "width: 250px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.team1Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.team2Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.team2ID,
+                        new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.team2ID),
+                        "Value",
+                        "Text",
+                        Model.team2ID),
+                        new { id = "team2ID", style = "width: 250px; height: 30px" }
+                        )
+                    @Html.ValidationMessageFor(model => model.team2Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.division, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.divisionID,
+                        new SelectList(ClassLibrary.Logic.DivisionLogic.DivisionSelectList.GetDivisionSelectListStatic(Model.divisionID??0),
+                        "Value",
+                        "Text",
+                        Model.divisionID),
+                        new { id = "divisionID", style = "width: 250px; height: 30px" }
+                        )
+                    @Html.ValidationMessageFor(model => model.division, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="padding-left: 120px;">
+                    @Html.ActionLink(
+                   linkText: "View Game Player Details",
+                   actionName: "Index",
+                   controllerName: "GameTeamPlayer",
+                   routeValues: new { gameTeamID = Model.gameTeam1ID },
+                   htmlAttributes: new { @class = "btn btn-primary btn-large" }
+                  )
+                </div>
+                <div class="col-md-8" style="padding-left: 220px">
+                    @Html.ActionLink(
+                   linkText: "View Game Player Details",
+                   actionName: "Index",
+                   controllerName: "GameTeamPlayer",
+                   routeValues: new { gameTeamID = Model.gameTeam2ID },
+                   htmlAttributes: new { @class = "btn btn-primary btn-large" }
+                  )
+                </div>
+            </div>
+            <p style="margin-top:0; margin-bottom:0; line-height:.5"><br /></p>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.captain1, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.captain1ID,
+                        new SelectList(ClassLibrary.Logic.TeamPlayerLogic.TeamPlayerSelectList.GetTeamPlayersSelectStaticList(Model.team1ID, Model.captain1ID??0, "-- Select a captain --"),
+                        "Value",
+                        "Text",
+                        Model.captain1ID),
+                        new { id = "captain1ID", style = "width: 250px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.captain1ID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.captain2, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.captain2ID,
+                        new SelectList(ClassLibrary.Logic.TeamPlayerLogic.TeamPlayerSelectList.GetTeamPlayersSelectStaticList(Model.team2ID, Model.captain2ID??0, "-- Select a captain --"),
+                        "Value",
+                        "Text",
+                        Model.captain2ID),
+                        new { id = "captain2ID", style = "width: 250px; height: 30px" }
+                        )
+                    @Html.ValidationMessageFor(model => model.captain2ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <p style="margin-top:0; margin-bottom:0; line-height:.5"><br /></p>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.coach1, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.coach1ID,
+                        new SelectList(ClassLibrary.Logic.PersonLogic.PersonSelectListLogic.GetPersonSelectListStatic(Model.coach1ID??0, "-- Select coach --"),
+                        "Value",
+                        "Text",
+                        Model.coach1ID),
+                        new { id = "coach1ID", style = "width: 250px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.coach1ID, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.coach2, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.coach2ID,
+                        new SelectList(ClassLibrary.Logic.PersonLogic.PersonSelectListLogic.GetPersonSelectListStatic(Model.coach2ID??0, "-- Select coach --"),
+                        "Value",
+                        "Text",
+                        Model.coach2ID),
+                        new { id = "coach2ID", style = "width: 250px; height: 30px" }
+                    )
+                    @Html.ValidationMessageFor(model => model.coach2ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <p style="margin-top:0; margin-bottom:0; line-height:.5"><br /></p>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.team1ScoreFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.team1ScoreFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.team1ScoreFinal, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">
+                    @Html.LabelFor(model => model.team2ScoreFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.team2ScoreFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.team2ScoreFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md--2">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    @if (ViewBag.controllerName == "Player" && ViewBag.viewName == "Index")
+                    {
+                        @Html.ActionLink(
+                             controllerName: "PlayerMatch",
+                             linkText: "Back to Player Match List",
+                             actionName: "Index",
+                             routeValues: new { playerID = ViewBag.playerID },
+                             htmlAttributes: null)
+                    }
+                    else if (ViewBag.controllerName == "GameMatch" && ViewBag.viewName == "Index")
+                    {
+                    @Html.ActionLink(
+                        controllerName: "GameMatch",
+                        linkText: "Back to Game Match List",
+                        actionName: "Index",
+                        routeValues: new { teamID = Model.team1ID },
+                        htmlAttributes: null)
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Back to Game List", "Index")
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2" , style="width: 1500px">
+                    <p class="text-danger">
+                        @ViewBag.ValidationMessage
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        @Html.HiddenFor(model => model.courtID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.tournamentID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.primaryUmpireID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.secondaryUmpireID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.reserveUmpireID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.scorer1ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.scorer2ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.timeKeeper1ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.timeKeeper2ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.divisionID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.team1ID, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.LabelFor(model => model.gameTeam1ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.team2ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.gameTeam1ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="col-md-10">
+        @Html.HiddenFor(model => model.gameTeam2ID, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $('#team1ID').change(function () {
+            var selectedTeam1 = $("#team1ID").val();
+            var captain1Select = $('#captain1ID');
+                captain1Select.empty();
+                if (selectedTeam1 != null && selectedTeam1 != '') {
+                    $.getJSON('@Url.Action("GetCaptainPlayers")', { teamID: selectedTeam1 }, function (players) {
+                        if (players != null && !jQuery.isEmptyObject(players))
+                        {
+                            captain1Select.append($('<option/>', {
+                                value: null,
+                                text: ""
+                            }));
+                            $.each(players, function (index, players) {
+                                captain1Select.append($('<option/>', {
+                                    value: players.Value,
+                                    text: players.Text
+                                }));
+                            });
+                        };
+                    });
+                }
+            });
+
+        $('#team2ID').change(function () {
+            var selectedTeam2 = $("#team2ID").val();
+            var captain2Select = $('#captain2ID');
+                captain2Select.empty();
+                if (selectedTeam2 != null && selectedTeam2 != '') {
+                    $.getJSON('@Url.Action("GetCaptainPlayers")', { teamID: selectedTeam2 }, function (players) {
+                        if (players != null && !jQuery.isEmptyObject(players))
+                        {
+                            captain2Select.append($('<option/>', {
+                                value: null,
+                                text: ""
+                            }));
+                            $.each(players, function (index, players) {
+                                captain2Select.append($('<option/>', {
+                                    value: players.Value,
+                                    text: players.Text
+                                }));
+                            });
+                        };
+                    });
+                }
+            });
+    </script>
+}

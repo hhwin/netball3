@@ -1,0 +1,118 @@
+﻿@model ClassLibrary.Models.PlayerModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.middleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.middleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emergencyContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emergencyContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emergencyContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emergencyContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.captain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.captain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.playerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.playerName)
+        </dd>
+
+    </dl>
+
+    @Html.DisplayFor(model => model.personID)
+    @Html.DisplayFor(model => model.teamID)
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink(
+           linkText: "Back to List",
+           actionName: "Index",
+           controllerName: "Player",
+           routeValues: new
+           {
+               searchString = "",
+               teamID = 0,
+               page = 0
+           },
+           htmlAttributes: null)
+        </div>
+    }
+</div>

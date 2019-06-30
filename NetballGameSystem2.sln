@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetballGameSystem2", "NetballGameSystem2\NetballGameSystem2.csproj", "{7BB4C275-DCFB-4F5E-81F5-35AC3917576E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{66108E41-5DC9-4BE8-9036-944542FC7A4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BB4C275-DCFB-4F5E-81F5-35AC3917576E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB4C275-DCFB-4F5E-81F5-35AC3917576E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB4C275-DCFB-4F5E-81F5-35AC3917576E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB4C275-DCFB-4F5E-81F5-35AC3917576E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66108E41-5DC9-4BE8-9036-944542FC7A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66108E41-5DC9-4BE8-9036-944542FC7A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66108E41-5DC9-4BE8-9036-944542FC7A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66108E41-5DC9-4BE8-9036-944542FC7A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74C4F437-1015-40C3-A6C2-7A331A16862E}
+	EndGlobalSection
+EndGlobal

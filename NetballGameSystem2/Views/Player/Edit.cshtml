@@ -1,0 +1,150 @@
+﻿@model ClassLibrary.Models.PlayerModel
+
+@{
+ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Edit Player Details</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.personID)
+    @Html.HiddenFor(model => model.teamID)
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label; width=100px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control; width=150px" } })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.middleName, htmlAttributes: new { @class = "control-label; width=100px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.middleName, new { htmlAttributes = new { @class = "form-control; width=150px" } })
+                @Html.ValidationMessageFor(model => model.middleName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label; width=50px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control; width=150px" } })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-offset-9">
+                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.mobile, htmlAttributes: new { @class = "control-label; width=50px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.mobile, new { htmlAttributes = new { @class = "form-control; width=150px" } })
+                @Html.ValidationMessageFor(model => model.mobile, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label;width=50px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control; width=150px" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <p style="margin-top:0; margin-bottom:0; line-height:.5"><br /></p>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.emergencyContact, htmlAttributes: new { @class = "control-label col-md-2;width=50px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.emergencyContact, new { htmlAttributes = new { @class = "form-control;width=150px" } })
+                @Html.ValidationMessageFor(model => model.emergencyContact, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.emergencyContactNo, htmlAttributes: new { @class = "control-label col-md-2;width=50px" })
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.emergencyContactNo, new { htmlAttributes = new { @class = "form-control;width=150px" } })
+                @Html.ValidationMessageFor(model => model.emergencyContactNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.teamName, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.teamID,
+                    new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.teamID),
+                    "Value",
+                    "Text",
+                    Model.teamID),
+                    new { @class = "select"})
+                @Html.ValidationMessageFor(model => model.teamID, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.captain, htmlAttributes: new { @class = "control-label col-md-2; width=50px" })
+            </div>
+            <div class="col-md-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.captain)
+                    @Html.ValidationMessageFor(model => model.captain, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @if (ViewBag.controllerName == "PlayerModel" && ViewBag.viewName == "Index")
+    {
+        @Html.ActionLink(
+                                  controllerName: "PlayerModel",
+                                  linkText: "Back to Team List",
+                                  actionName: "Index",
+                                  routeValues: new { playerID = ViewBag.playerID, teamID = ViewBag.teamID, controllerName = "Division", viewName = "Index" },
+                                  htmlAttributes: null
+                                  )
+    }
+    else
+    {
+        @Html.ActionLink(
+         controllerName: "Player",
+         linkText: "Back to List",
+         actionName: "Index",
+         routeValues: new { playerID = ViewBag.playerID, teamID = ViewBag.teamID },
+         htmlAttributes:null
+            )
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@if (TempData["statusMessage"] != null)
+{
+    <script type="text/javascript">
+       alert("@TempData["statusMessage"]");
+    </script>
+}

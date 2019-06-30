@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f78573d83d9f467a93db5cfea3c4bf23" Name="Diagram1">
+        <EntityTypeShape EntityType="NetballGameSystemModel.Coach" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Court" Width="1.5" PointX="3.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Division" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Game" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.GamePlayer" Width="1.5" PointX="12" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.GameQuarter" Width="1.5" PointX="12" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.GameTeam" Width="1.5" PointX="10.375" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Person" Width="2" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.QuarterType" Width="1.5" PointX="10.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Team" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.TeamPlayer" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Tournament" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Coach_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Coach_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_Court" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_Division" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Team_DIvision" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_PrimaryUmpire" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_ReserveUmpire" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_Scorer1" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_Scorer2" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_SecondaryUmpire" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_Team2" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_TimeKeeper1" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_TimeKeeper2" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Game_Tournament" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameHeader_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameTeam_GameTeam" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameTeam_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameQuarter_GameHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameQuarter_QuarterType" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameHeader_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameHeader_Person1" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameHeader_Person2" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_GameHeader_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Team_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_Team_Person1" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_TeamPlayer_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_TeamPlayer_Team" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.AwardPerson" Width="1.875" PointX="5.875" PointY="13" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.Award" Width="1.5" PointX="1.5" PointY="12.875" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.CoachAssistant" Width="1.5" PointX="8.25" PointY="9" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.CommitteePerson" Width="2" PointX="8.375" PointY="12.125" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.CommitteePosition" Width="2" PointX="8.375" PointY="15.375" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.TeamPlayerStatu" Width="1.875" PointX="10.25" PointY="9.25" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.VolunteerPerson" Width="1.5" PointX="8" PointY="1.625" />
+        <EntityTypeShape EntityType="NetballGameSystemModel.VolunteerTitle" Width="1.5" PointX="3.5" PointY="14.75" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_AwardPerson_Awards" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_AwardPerson_Person" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_CoachAssistant_Person" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_CoachAssistant_Team" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_CommitteeMembers_CommitteePosition" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_CommitteeMembers_Person" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_VolunteerPerson_Person" />
+        <AssociationConnector Association="NetballGameSystemModel.FK_VolunteerPerson_VolunteerTitle" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,120 @@
+﻿
+@model ClassLibrary.Models.CoachIndexModel
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-md-1">
+    Team Name
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+    <div class="col-md-3">
+        @Html.DropDownListFor(model => model.teamID,
+       new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.teamID ?? 0),
+       "Value",
+       "Text",
+       Model.teamID),
+       new { @class = "Select" })
+        @Html.ValidationMessageFor(model => model.teamID, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-1">
+        @Html.LabelFor(model => model.firstName)
+    </div>
+    <div class="col-md-2">
+        @Html.TextBoxFor(model => model.firstName)
+    </div>
+    <div class="col-md-2">
+        @Html.LabelFor(model => model.lastName)
+    </div>
+    <div class="col-md-1">
+        @Html.TextBoxFor(model => model.lastName)
+    </div>
+</div>
+<br />
+<br />
+
+<div class="col-md-1">
+    <input type="submit" value="Search" />
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Coach Name
+        </th>
+        <th>
+            Mobile
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Division
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.coachPagedList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.teamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.coachName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.division)
+            </td>
+            <td>
+                @Html.ActionLink(
+               linkText: "Team Details",
+               actionName: "Edit",
+               controllerName: "TeamModel",
+               routeValues: new { teamID = item.teamID },
+               htmlAttributes: null
+               ) |
+                @Html.ActionLink(
+               linkText: "Team Player Details",
+               actionName: "Index",
+               controllerName: "Player",
+               routeValues: new { teamID = item.teamID },
+               htmlAttributes: null
+               )|
+               @Html.ActionLink(
+                   linkText: "Coach Details",
+                   actionName: "Details",
+                   controllerName : "Coach1",
+                   routeValues : new {coachID = item.personID},
+                   htmlAttributes: null
+                   )
+            </td>
+        </tr>
+    }
+
+</table>
+}
+
+@if (Model != null && Model.coachPagedList.PageCount > 0)
+{
+<div>
+    Page @(Model.coachPagedList.PageCount < @Model.coachPagedList.PageNumber  ? 0: @Model.coachPagedList.PageCount) of @Model.coachPagedList.PageCount
+    @Html.PagedListPager(Model.coachPagedList, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }))
+</div>
+}
+
+

@@ -1,0 +1,2167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NetballGameSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AwardPerson">
+          <Key>
+            <PropertyRef Name="AwardPersonID" />
+          </Key>
+          <Property Name="AwardPersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AwardID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="YearAward" Type="int" Nullable="false" />
+          <Property Name="DateOfAward" Type="date" />
+          <Property Name="Comments" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="Awards">
+          <Key>
+            <PropertyRef Name="AwardID" />
+          </Key>
+          <Property Name="AwardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AwardName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActiveInd" Type="bit" />
+          <Property Name="Comments" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="CoachID" />
+          </Key>
+          <Property Name="CoachID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="CoachPersonID" Type="int" Nullable="false" />
+          <Property Name="ActiveInd" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoachAssistant">
+          <Key>
+            <PropertyRef Name="AssistantCoachID" />
+          </Key>
+          <Property Name="AssistantCoachID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="ActiveInd" Type="bit" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Comments" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="CommitteePerson">
+          <Key>
+            <PropertyRef Name="CommitteeMemberID" />
+          </Key>
+          <Property Name="CommitteeMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommitteePositionID" Type="int" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="ActiveInd" Type="bit" />
+          <Property Name="Comments" Type="varchar" MaxLength="8000" />
+          <Property Name="VolunteerInd" Type="bit" />
+        </EntityType>
+        <EntityType Name="CommitteePosition">
+          <Key>
+            <PropertyRef Name="CommitteePositionID" />
+          </Key>
+          <Property Name="CommitteePositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommitteePosition" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActiveInd" Type="bit" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Comments" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="Court">
+          <Key>
+            <PropertyRef Name="CourtID" />
+          </Key>
+          <Property Name="CourtID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Court" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionID" />
+          </Key>
+          <Property Name="DivisionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Division" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourtID" Type="int" Nullable="false" />
+          <Property Name="TournamentID" Type="int" />
+          <Property Name="MatchNo" Type="varchar" MaxLength="100" />
+          <Property Name="Venue" Type="varchar" MaxLength="100" />
+          <Property Name="DatePlayed" Type="date" Nullable="false" />
+          <Property Name="PrimaryUmpireID" Type="int" />
+          <Property Name="SecondaryUmpireID" Type="int" />
+          <Property Name="ReserveUmpireID" Type="int" />
+          <Property Name="StartTime" Type="time" Precision="0" Nullable="false" />
+          <Property Name="FullTime" Type="time" Precision="0" Nullable="false" />
+          <Property Name="ExtraTimeEnd" Type="int" />
+          <Property Name="MatchWonByTeamID" Type="int" />
+          <Property Name="Scorer1ID" Type="int" />
+          <Property Name="Scorer2ID" Type="int" />
+          <Property Name="TimeKeeper1ID" Type="int" />
+          <Property Name="TimeKeeper2ID" Type="int" />
+          <Property Name="DivisionID" Type="int" />
+        </EntityType>
+        <EntityType Name="GamePlayer">
+          <Key>
+            <PropertyRef Name="GamePlayerID" />
+          </Key>
+          <Property Name="GamePlayerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameTeamID" Type="int" Nullable="false" />
+          <Property Name="PlayerID" Type="int" Nullable="false" />
+          <Property Name="FirstQuarterInd" Type="bit" Nullable="false" />
+          <Property Name="SecondQuarterInd" Type="bit" Nullable="false" />
+          <Property Name="ThirdQuarterInd" Type="bit" Nullable="false" />
+          <Property Name="FourthQuarterInd" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameQuarter">
+          <Key>
+            <PropertyRef Name="GameQuarterID" />
+          </Key>
+          <Property Name="GameQuarterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameTeamID" Type="int" />
+          <Property Name="QuarterTypeID" Type="int" />
+          <Property Name="CtrPass" Type="varchar" MaxLength="100" />
+          <Property Name="TeamGS" Type="varchar" MaxLength="100" />
+          <Property Name="TeamGA" Type="varchar" MaxLength="100" />
+          <Property Name="GoalShotAttempt" Type="int" />
+          <Property Name="GoalShotScored" Type="int" />
+          <Property Name="QuarterScore" Type="int" />
+          <Property Name="ProgressiveScore" Type="int" />
+        </EntityType>
+        <EntityType Name="GameTeam">
+          <Key>
+            <PropertyRef Name="GameTeamID" />
+          </Key>
+          <Property Name="GameTeamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameID" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="CaptainID" Type="int" />
+          <Property Name="CoachID" Type="int" />
+          <Property Name="PrimaryCarerID" Type="int" />
+          <Property Name="FinalScore" Type="int" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="EmergencyContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="EmergencyContact" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QuarterType">
+          <Key>
+            <PropertyRef Name="QuarterTypeID" />
+          </Key>
+          <Property Name="QuarterTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuarterType" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CoachID" Type="int" />
+          <Property Name="DivisionID" Type="int" />
+          <Property Name="CaptainID" Type="int" />
+        </EntityType>
+        <EntityType Name="TeamPlayer">
+          <Key>
+            <PropertyRef Name="TeamPlayerID" />
+          </Key>
+          <Property Name="TeamPlayerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="PlayerID" Type="int" Nullable="false" />
+          <Property Name="CaptainInd" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamPlayerStatus">
+          <Key>
+            <PropertyRef Name="TeamPlayerStatusID" />
+          </Key>
+          <Property Name="TeamPlayerStatusID" Type="int" Nullable="false" />
+          <Property Name="TeamPlayerStatus" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="TournamentID" />
+          </Key>
+          <Property Name="TournamentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tournament" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VolunteerPerson">
+          <Key>
+            <PropertyRef Name="VolunteerPersonID" />
+          </Key>
+          <Property Name="VolunteerPersonID" Type="int" Nullable="false" />
+          <Property Name="VolunteerTitleID" Type="int" />
+          <Property Name="PersonID" Type="int" />
+          <Property Name="ActiveInd" Type="bit" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="VolunteerTitle">
+          <Key>
+            <PropertyRef Name="VolunteerTitleID" />
+          </Key>
+          <Property Name="VolunteerTitleID" Type="int" Nullable="false" />
+          <Property Name="VolunteerTitle" Type="varchar" MaxLength="250" />
+          <Property Name="ActiveInd" Type="bit" />
+        </EntityType>
+        <Association Name="FK_AwardPerson_Awards">
+          <End Role="Awards" Type="Self.Awards" Multiplicity="1" />
+          <End Role="AwardPerson" Type="Self.AwardPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Awards">
+              <PropertyRef Name="AwardID" />
+            </Principal>
+            <Dependent Role="AwardPerson">
+              <PropertyRef Name="AwardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AwardPerson_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AwardPerson" Type="Self.AwardPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="AwardPerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="CoachPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoachAssistant_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="CoachAssistant" Type="Self.CoachAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CoachAssistant">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoachAssistant_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="CoachAssistant" Type="Self.CoachAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="CoachAssistant">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommitteeMembers_CommitteePosition">
+          <End Role="CommitteePosition" Type="Self.CommitteePosition" Multiplicity="1" />
+          <End Role="CommitteePerson" Type="Self.CommitteePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommitteePosition">
+              <PropertyRef Name="CommitteePositionID" />
+            </Principal>
+            <Dependent Role="CommitteePerson">
+              <PropertyRef Name="CommitteePositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommitteeMembers_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="CommitteePerson" Type="Self.CommitteePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CommitteePerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Court">
+          <End Role="Court" Type="Self.Court" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Court">
+              <PropertyRef Name="CourtID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="CourtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="PrimaryUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="SecondaryUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="ReserveUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person3">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Scorer1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person4">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Scorer2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person5">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TimeKeeper1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Person6">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TimeKeeper2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_PrimaryUmpire">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="PrimaryUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_ReserveUmpire">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="ReserveUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Scorer1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Scorer1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Scorer2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Scorer2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_SecondaryUmpire">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="SecondaryUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Team2">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="MatchWonByTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_TimeKeeper1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TimeKeeper1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_TimeKeeper2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TimeKeeper2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Tournament">
+          <End Role="Tournament" Type="Self.Tournament" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tournament">
+              <PropertyRef Name="TournamentID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TournamentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="CaptainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Person2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="PrimaryCarerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamePlayer_GameTeam">
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="1" />
+          <End Role="GamePlayer" Type="Self.GamePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameTeam">
+              <PropertyRef Name="GameTeamID" />
+            </Principal>
+            <Dependent Role="GamePlayer">
+              <PropertyRef Name="GameTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameQuarter_GameHeader">
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="0..1" />
+          <End Role="GameQuarter" Type="Self.GameQuarter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameTeam">
+              <PropertyRef Name="GameTeamID" />
+            </Principal>
+            <Dependent Role="GameQuarter">
+              <PropertyRef Name="GameTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameQuarter_QuarterType">
+          <End Role="QuarterType" Type="Self.QuarterType" Multiplicity="0..1" />
+          <End Role="GameQuarter" Type="Self.GameQuarter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuarterType">
+              <PropertyRef Name="QuarterTypeID" />
+            </Principal>
+            <Dependent Role="GameQuarter">
+              <PropertyRef Name="QuarterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_GameTeam">
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="1" />
+          <End Role="GamePlayer" Type="Self.GamePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameTeam">
+              <PropertyRef Name="GameTeamID" />
+            </Principal>
+            <Dependent Role="GamePlayer">
+              <PropertyRef Name="GameTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="GamePlayer" Type="Self.GamePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GamePlayer">
+              <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_Person2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="PrimaryCarerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_DIvision">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="CaptainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamPlayer_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="TeamPlayer" Type="Self.TeamPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="TeamPlayer">
+              <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamPlayer_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamPlayer" Type="Self.TeamPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="TeamPlayer">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VolunteerPerson_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="VolunteerPerson" Type="Self.VolunteerPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="VolunteerPerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VolunteerPerson_VolunteerTitle">
+          <End Role="VolunteerTitle" Type="Self.VolunteerTitle" Multiplicity="0..1" />
+          <End Role="VolunteerPerson" Type="Self.VolunteerPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VolunteerTitle">
+              <PropertyRef Name="VolunteerTitleID" />
+            </Principal>
+            <Dependent Role="VolunteerPerson">
+              <PropertyRef Name="VolunteerTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spPopulateGame" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spPopulateGamePlayer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spPopulateGameTeam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spPopulatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spPopulateTeamPlayer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdatePerson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PersonID" Type="int" Mode="In" />
+          <Parameter Name="FirstName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="NetballGameSystemModelStoreContainer">
+          <EntitySet Name="AwardPerson" EntityType="Self.AwardPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Awards" EntityType="Self.Awards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoachAssistant" EntityType="Self.CoachAssistant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommitteePerson" EntityType="Self.CommitteePerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommitteePosition" EntityType="Self.CommitteePosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Court" EntityType="Self.Court" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GamePlayer" EntityType="Self.GamePlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameQuarter" EntityType="Self.GameQuarter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameTeam" EntityType="Self.GameTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuarterType" EntityType="Self.QuarterType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamPlayer" EntityType="Self.TeamPlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamPlayerStatus" EntityType="Self.TeamPlayerStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tournament" EntityType="Self.Tournament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VolunteerPerson" EntityType="Self.VolunteerPerson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VolunteerTitle" EntityType="Self.VolunteerTitle" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AwardPerson_Awards" Association="Self.FK_AwardPerson_Awards">
+            <End Role="Awards" EntitySet="Awards" />
+            <End Role="AwardPerson" EntitySet="AwardPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AwardPerson_Person" Association="Self.FK_AwardPerson_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="AwardPerson" EntitySet="AwardPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_Person" Association="Self.FK_Coach_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_Team" Association="Self.FK_Coach_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoachAssistant_Person" Association="Self.FK_CoachAssistant_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="CoachAssistant" EntitySet="CoachAssistant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoachAssistant_Team" Association="Self.FK_CoachAssistant_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="CoachAssistant" EntitySet="CoachAssistant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommitteeMembers_CommitteePosition" Association="Self.FK_CommitteeMembers_CommitteePosition">
+            <End Role="CommitteePosition" EntitySet="CommitteePosition" />
+            <End Role="CommitteePerson" EntitySet="CommitteePerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommitteeMembers_Person" Association="Self.FK_CommitteeMembers_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="CommitteePerson" EntitySet="CommitteePerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Court" Association="Self.FK_Game_Court">
+            <End Role="Court" EntitySet="Court" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Division" Association="Self.FK_Game_Division">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person" Association="Self.FK_Game_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person1" Association="Self.FK_Game_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person2" Association="Self.FK_Game_Person2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person3" Association="Self.FK_Game_Person3">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person4" Association="Self.FK_Game_Person4">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person5" Association="Self.FK_Game_Person5">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Person6" Association="Self.FK_Game_Person6">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_PrimaryUmpire" Association="Self.FK_Game_PrimaryUmpire">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_ReserveUmpire" Association="Self.FK_Game_ReserveUmpire">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Scorer1" Association="Self.FK_Game_Scorer1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Scorer2" Association="Self.FK_Game_Scorer2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_SecondaryUmpire" Association="Self.FK_Game_SecondaryUmpire">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Team2" Association="Self.FK_Game_Team2">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_TimeKeeper1" Association="Self.FK_Game_TimeKeeper1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_TimeKeeper2" Association="Self.FK_Game_TimeKeeper2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Tournament" Association="Self.FK_Game_Tournament">
+            <End Role="Tournament" EntitySet="Tournament" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Game" Association="Self.FK_GameHeader_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Person" Association="Self.FK_GameHeader_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Person1" Association="Self.FK_GameHeader_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Person2" Association="Self.FK_GameHeader_Person2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Team" Association="Self.FK_GameHeader_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamePlayer_GameTeam" Association="Self.FK_GamePlayer_GameTeam">
+            <End Role="GameTeam" EntitySet="GameTeam" />
+            <End Role="GamePlayer" EntitySet="GamePlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameQuarter_GameHeader" Association="Self.FK_GameQuarter_GameHeader">
+            <End Role="GameTeam" EntitySet="GameTeam" />
+            <End Role="GameQuarter" EntitySet="GameQuarter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameQuarter_QuarterType" Association="Self.FK_GameQuarter_QuarterType">
+            <End Role="QuarterType" EntitySet="QuarterType" />
+            <End Role="GameQuarter" EntitySet="GameQuarter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_GameTeam" Association="Self.FK_GameTeam_GameTeam">
+            <End Role="GameTeam" EntitySet="GameTeam" />
+            <End Role="GamePlayer" EntitySet="GamePlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_Person" Association="Self.FK_GameTeam_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GamePlayer" EntitySet="GamePlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_Person1" Association="Self.FK_GameTeam_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_Person2" Association="Self.FK_GameTeam_Person2">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_Team" Association="Self.FK_GameTeam_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="GameTeam" EntitySet="GameTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_DIvision" Association="Self.FK_Team_DIvision">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Person" Association="Self.FK_Team_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Person1" Association="Self.FK_Team_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamPlayer_Person" Association="Self.FK_TeamPlayer_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="TeamPlayer" EntitySet="TeamPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamPlayer_Team" Association="Self.FK_TeamPlayer_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamPlayer" EntitySet="TeamPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VolunteerPerson_Person" Association="Self.FK_VolunteerPerson_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="VolunteerPerson" EntitySet="VolunteerPerson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VolunteerPerson_VolunteerTitle" Association="Self.FK_VolunteerPerson_VolunteerTitle">
+            <End Role="VolunteerTitle" EntitySet="VolunteerTitle" />
+            <End Role="VolunteerPerson" EntitySet="VolunteerPerson" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NetballGameSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="CoachID" />
+          </Key>
+          <Property Name="CoachID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="CoachPersonID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveInd" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Coach_Person" FromRole="Coach" ToRole="Person" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Coach_Team" FromRole="Coach" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Court">
+          <Key>
+            <PropertyRef Name="CourtID" />
+          </Key>
+          <Property Name="CourtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Court1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_Game_Court" FromRole="Court" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="DivisionID" />
+          </Key>
+          <Property Name="DivisionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Division1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_Game_Division" FromRole="Division" ToRole="Game" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Team_DIvision" FromRole="Division" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourtID" Type="Int32" Nullable="false" />
+          <Property Name="TournamentID" Type="Int32" />
+          <Property Name="MatchNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Venue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DatePlayed" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PrimaryUmpireID" Type="Int32" />
+          <Property Name="SecondaryUmpireID" Type="Int32" />
+          <Property Name="ReserveUmpireID" Type="Int32" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="FullTime" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="ExtraTimeEnd" Type="Int32" />
+          <Property Name="MatchWonByTeamID" Type="Int32" />
+          <Property Name="Scorer1ID" Type="Int32" />
+          <Property Name="Scorer2ID" Type="Int32" />
+          <Property Name="TimeKeeper1ID" Type="Int32" />
+          <Property Name="TimeKeeper2ID" Type="Int32" />
+          <Property Name="DivisionID" Type="Int32" />
+          <NavigationProperty Name="Court" Relationship="Self.FK_Game_Court" FromRole="Game" ToRole="Court" />
+          <NavigationProperty Name="Division" Relationship="Self.FK_Game_Division" FromRole="Game" ToRole="Division" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Game_PrimaryUmpire" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_Game_ReserveUmpire" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Person2" Relationship="Self.FK_Game_Scorer1" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Person3" Relationship="Self.FK_Game_Scorer2" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Person4" Relationship="Self.FK_Game_SecondaryUmpire" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Game_Team2" FromRole="Game" ToRole="Team" />
+          <NavigationProperty Name="Person5" Relationship="Self.FK_Game_TimeKeeper1" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Person6" Relationship="Self.FK_Game_TimeKeeper2" FromRole="Game" ToRole="Person" />
+          <NavigationProperty Name="Tournament" Relationship="Self.FK_Game_Tournament" FromRole="Game" ToRole="Tournament" />
+          <NavigationProperty Name="GameTeams" Relationship="Self.FK_GameHeader_Game" FromRole="Game" ToRole="GameTeam" />
+        </EntityType>
+        <EntityType Name="GamePlayer">
+          <Key>
+            <PropertyRef Name="GamePlayerID" />
+          </Key>
+          <Property Name="GamePlayerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameTeamID" Type="Int32" Nullable="false" />
+          <Property Name="PlayerID" Type="Int32" Nullable="false" />
+          <Property Name="FirstQuarterInd" Type="Boolean" Nullable="false" />
+          <Property Name="SecondQuarterInd" Type="Boolean" Nullable="false" />
+          <Property Name="ThirdQuarterInd" Type="Boolean" Nullable="false" />
+          <Property Name="FourthQuarterInd" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GameTeam" Relationship="Self.FK_GameTeam_GameTeam" FromRole="GamePlayer" ToRole="GameTeam" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_GameTeam_Person" FromRole="GamePlayer" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="GameQuarter">
+          <Key>
+            <PropertyRef Name="GameQuarterID" />
+          </Key>
+          <Property Name="GameQuarterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameTeamID" Type="Int32" />
+          <Property Name="QuarterTypeID" Type="Int32" />
+          <Property Name="CtrPass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TeamGS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TeamGA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GoalShotAttempt" Type="Int32" />
+          <Property Name="GoalShotScored" Type="Int32" />
+          <Property Name="QuarterScore" Type="Int32" />
+          <Property Name="ProgressiveScore" Type="Int32" />
+          <NavigationProperty Name="GameTeam" Relationship="Self.FK_GameQuarter_GameHeader" FromRole="GameQuarter" ToRole="GameTeam" />
+          <NavigationProperty Name="QuarterType" Relationship="Self.FK_GameQuarter_QuarterType" FromRole="GameQuarter" ToRole="QuarterType" />
+        </EntityType>
+        <EntityType Name="GameTeam">
+          <Key>
+            <PropertyRef Name="GameTeamID" />
+          </Key>
+          <Property Name="GameTeamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="CaptainID" Type="Int32" />
+          <Property Name="CoachID" Type="Int32" />
+          <Property Name="PrimaryCarerID" Type="Int32" />
+          <Property Name="FinalScore" Type="Int32" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_GameHeader_Game" FromRole="GameTeam" ToRole="Game" />
+          <NavigationProperty Name="GamePlayers" Relationship="Self.FK_GameTeam_GameTeam" FromRole="GameTeam" ToRole="GamePlayer" />
+          <NavigationProperty Name="GameQuarters" Relationship="Self.FK_GameQuarter_GameHeader" FromRole="GameTeam" ToRole="GameQuarter" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_GameHeader_Person" FromRole="GameTeam" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_GameHeader_Person1" FromRole="GameTeam" ToRole="Person" />
+          <NavigationProperty Name="Person2" Relationship="Self.FK_GameHeader_Person2" FromRole="GameTeam" ToRole="Person" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_GameHeader_Team" FromRole="GameTeam" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmergencyContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmergencyContact" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coaches" Relationship="Self.FK_Coach_Person" FromRole="Person" ToRole="Coach" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_Game_PrimaryUmpire" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="Games1" Relationship="Self.FK_Game_ReserveUmpire" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="Games2" Relationship="Self.FK_Game_Scorer1" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="Games3" Relationship="Self.FK_Game_Scorer2" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="Games4" Relationship="Self.FK_Game_SecondaryUmpire" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="Games5" Relationship="Self.FK_Game_TimeKeeper1" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="Games6" Relationship="Self.FK_Game_TimeKeeper2" FromRole="Person" ToRole="Game" />
+          <NavigationProperty Name="GamePlayers" Relationship="Self.FK_GameTeam_Person" FromRole="Person" ToRole="GamePlayer" />
+          <NavigationProperty Name="GameTeams" Relationship="Self.FK_GameHeader_Person" FromRole="Person" ToRole="GameTeam" />
+          <NavigationProperty Name="GameTeams1" Relationship="Self.FK_GameHeader_Person1" FromRole="Person" ToRole="GameTeam" />
+          <NavigationProperty Name="GameTeams2" Relationship="Self.FK_GameHeader_Person2" FromRole="Person" ToRole="GameTeam" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Team_Person" FromRole="Person" ToRole="Team" />
+          <NavigationProperty Name="Teams1" Relationship="Self.FK_Team_Person1" FromRole="Person" ToRole="Team" />
+          <NavigationProperty Name="TeamPlayers" Relationship="Self.FK_TeamPlayer_Person" FromRole="Person" ToRole="TeamPlayer" />
+          <NavigationProperty Name="AwardPersons" Relationship="NetballGameSystemModel.FK_AwardPerson_Person" FromRole="Person" ToRole="AwardPerson" />
+          <NavigationProperty Name="CoachAssistants" Relationship="NetballGameSystemModel.FK_CoachAssistant_Person" FromRole="Person" ToRole="CoachAssistant" />
+          <NavigationProperty Name="CommitteePersons" Relationship="NetballGameSystemModel.FK_CommitteeMembers_Person" FromRole="Person" ToRole="CommitteePerson" />
+          <NavigationProperty Name="VolunteerPersons" Relationship="NetballGameSystemModel.FK_VolunteerPerson_Person" FromRole="Person" ToRole="VolunteerPerson" />
+        </EntityType>
+        <EntityType Name="QuarterType">
+          <Key>
+            <PropertyRef Name="QuarterTypeID" />
+          </Key>
+          <Property Name="QuarterTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuarterType1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GameQuarters" Relationship="Self.FK_GameQuarter_QuarterType" FromRole="QuarterType" ToRole="GameQuarter" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CoachID" Type="Int32" />
+          <Property Name="DivisionID" Type="Int32" />
+          <Property Name="CaptainID" Type="Int32" />
+          <NavigationProperty Name="Coaches" Relationship="Self.FK_Coach_Team" FromRole="Team" ToRole="Coach" />
+          <NavigationProperty Name="Division" Relationship="Self.FK_Team_DIvision" FromRole="Team" ToRole="Division" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_Game_Team2" FromRole="Team" ToRole="Game" />
+          <NavigationProperty Name="GameTeams" Relationship="Self.FK_GameHeader_Team" FromRole="Team" ToRole="GameTeam" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Team_Person" FromRole="Team" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_Team_Person1" FromRole="Team" ToRole="Person" />
+          <NavigationProperty Name="TeamPlayers" Relationship="Self.FK_TeamPlayer_Team" FromRole="Team" ToRole="TeamPlayer" />
+          <NavigationProperty Name="CoachAssistants" Relationship="NetballGameSystemModel.FK_CoachAssistant_Team" FromRole="Team" ToRole="CoachAssistant" />
+        </EntityType>
+        <EntityType Name="TeamPlayer">
+          <Key>
+            <PropertyRef Name="TeamPlayerID" />
+          </Key>
+          <Property Name="TeamPlayerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="PlayerID" Type="Int32" Nullable="false" />
+          <Property Name="CaptainInd" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_TeamPlayer_Person" FromRole="TeamPlayer" ToRole="Person" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_TeamPlayer_Team" FromRole="TeamPlayer" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="TournamentID" />
+          </Key>
+          <Property Name="TournamentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tournament1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_Game_Tournament" FromRole="Tournament" ToRole="Game" />
+        </EntityType>
+        <Association Name="FK_Coach_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="CoachPersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Court">
+          <End Role="Court" Type="Self.Court" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Court">
+              <PropertyRef Name="CourtID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="CourtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Division">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_DIvision">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="DivisionID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_PrimaryUmpire">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="PrimaryUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_ReserveUmpire">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="ReserveUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Scorer1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Scorer1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Scorer2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="Scorer2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_SecondaryUmpire">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="SecondaryUmpireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Team2">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="MatchWonByTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_TimeKeeper1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TimeKeeper1ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_TimeKeeper2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TimeKeeper2ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Game_Tournament">
+          <End Role="Tournament" Type="Self.Tournament" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tournament">
+              <PropertyRef Name="TournamentID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="TournamentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_GameTeam">
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="1" />
+          <End Role="GamePlayer" Type="Self.GamePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameTeam">
+              <PropertyRef Name="GameTeamID" />
+            </Principal>
+            <Dependent Role="GamePlayer">
+              <PropertyRef Name="GameTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameTeam_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="GamePlayer" Type="Self.GamePlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GamePlayer">
+              <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameQuarter_GameHeader">
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="0..1" />
+          <End Role="GameQuarter" Type="Self.GameQuarter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameTeam">
+              <PropertyRef Name="GameTeamID" />
+            </Principal>
+            <Dependent Role="GameQuarter">
+              <PropertyRef Name="GameTeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameQuarter_QuarterType">
+          <End Role="QuarterType" Type="Self.QuarterType" Multiplicity="0..1" />
+          <End Role="GameQuarter" Type="Self.GameQuarter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuarterType">
+              <PropertyRef Name="QuarterTypeID" />
+            </Principal>
+            <Dependent Role="GameQuarter">
+              <PropertyRef Name="QuarterTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="CaptainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Person2">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="PrimaryCarerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameHeader_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="GameTeam" Type="Self.GameTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="GameTeam">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="CaptainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamPlayer_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="TeamPlayer" Type="Self.TeamPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="TeamPlayer">
+              <PropertyRef Name="PlayerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamPlayer_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamPlayer" Type="Self.TeamPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="TeamPlayer">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NetballEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coaches" EntityType="Self.Coach" />
+          <EntitySet Name="Courts" EntityType="Self.Court" />
+          <EntitySet Name="Divisions" EntityType="Self.Division" />
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="GamePlayers" EntityType="Self.GamePlayer" />
+          <EntitySet Name="GameQuarters" EntityType="Self.GameQuarter" />
+          <EntitySet Name="GameTeams" EntityType="Self.GameTeam" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="QuarterTypes" EntityType="Self.QuarterType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="TeamPlayers" EntityType="Self.TeamPlayer" />
+          <EntitySet Name="Tournaments" EntityType="Self.Tournament" />
+          <AssociationSet Name="FK_Coach_Person" Association="Self.FK_Coach_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Coach" EntitySet="Coaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_Team" Association="Self.FK_Coach_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Coach" EntitySet="Coaches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Court" Association="Self.FK_Game_Court">
+            <End Role="Court" EntitySet="Courts" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Division" Association="Self.FK_Game_Division">
+            <End Role="Division" EntitySet="Divisions" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_DIvision" Association="Self.FK_Team_DIvision">
+            <End Role="Division" EntitySet="Divisions" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_PrimaryUmpire" Association="Self.FK_Game_PrimaryUmpire">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_ReserveUmpire" Association="Self.FK_Game_ReserveUmpire">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Scorer1" Association="Self.FK_Game_Scorer1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Scorer2" Association="Self.FK_Game_Scorer2">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_SecondaryUmpire" Association="Self.FK_Game_SecondaryUmpire">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Team2" Association="Self.FK_Game_Team2">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_TimeKeeper1" Association="Self.FK_Game_TimeKeeper1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_TimeKeeper2" Association="Self.FK_Game_TimeKeeper2">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Game_Tournament" Association="Self.FK_Game_Tournament">
+            <End Role="Tournament" EntitySet="Tournaments" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Game" Association="Self.FK_GameHeader_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="GameTeam" EntitySet="GameTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_GameTeam" Association="Self.FK_GameTeam_GameTeam">
+            <End Role="GameTeam" EntitySet="GameTeams" />
+            <End Role="GamePlayer" EntitySet="GamePlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameTeam_Person" Association="Self.FK_GameTeam_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="GamePlayer" EntitySet="GamePlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameQuarter_GameHeader" Association="Self.FK_GameQuarter_GameHeader">
+            <End Role="GameTeam" EntitySet="GameTeams" />
+            <End Role="GameQuarter" EntitySet="GameQuarters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameQuarter_QuarterType" Association="Self.FK_GameQuarter_QuarterType">
+            <End Role="QuarterType" EntitySet="QuarterTypes" />
+            <End Role="GameQuarter" EntitySet="GameQuarters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Person" Association="Self.FK_GameHeader_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="GameTeam" EntitySet="GameTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Person1" Association="Self.FK_GameHeader_Person1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="GameTeam" EntitySet="GameTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Person2" Association="Self.FK_GameHeader_Person2">
+            <End Role="Person" EntitySet="People" />
+            <End Role="GameTeam" EntitySet="GameTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameHeader_Team" Association="Self.FK_GameHeader_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="GameTeam" EntitySet="GameTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Person" Association="Self.FK_Team_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Person1" Association="Self.FK_Team_Person1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamPlayer_Person" Association="Self.FK_TeamPlayer_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="TeamPlayer" EntitySet="TeamPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamPlayer_Team" Association="Self.FK_TeamPlayer_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="TeamPlayer" EntitySet="TeamPlayers" />
+          </AssociationSet>
+          <EntitySet Name="AwardPersons" EntityType="NetballGameSystemModel.AwardPerson" />
+          <EntitySet Name="Awards" EntityType="NetballGameSystemModel.Award" />
+          <EntitySet Name="CoachAssistants" EntityType="NetballGameSystemModel.CoachAssistant" />
+          <EntitySet Name="CommitteePersons" EntityType="NetballGameSystemModel.CommitteePerson" />
+          <EntitySet Name="CommitteePositions" EntityType="NetballGameSystemModel.CommitteePosition" />
+          <EntitySet Name="TeamPlayerStatus" EntityType="NetballGameSystemModel.TeamPlayerStatu" />
+          <EntitySet Name="VolunteerPersons" EntityType="NetballGameSystemModel.VolunteerPerson" />
+          <EntitySet Name="VolunteerTitles" EntityType="NetballGameSystemModel.VolunteerTitle" />
+          <AssociationSet Name="FK_AwardPerson_Awards" Association="NetballGameSystemModel.FK_AwardPerson_Awards">
+            <End Role="Award" EntitySet="Awards" />
+            <End Role="AwardPerson" EntitySet="AwardPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AwardPerson_Person" Association="NetballGameSystemModel.FK_AwardPerson_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="AwardPerson" EntitySet="AwardPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoachAssistant_Person" Association="NetballGameSystemModel.FK_CoachAssistant_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="CoachAssistant" EntitySet="CoachAssistants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoachAssistant_Team" Association="NetballGameSystemModel.FK_CoachAssistant_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="CoachAssistant" EntitySet="CoachAssistants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommitteeMembers_CommitteePosition" Association="NetballGameSystemModel.FK_CommitteeMembers_CommitteePosition">
+            <End Role="CommitteePosition" EntitySet="CommitteePositions" />
+            <End Role="CommitteePerson" EntitySet="CommitteePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommitteeMembers_Person" Association="NetballGameSystemModel.FK_CommitteeMembers_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="CommitteePerson" EntitySet="CommitteePersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VolunteerPerson_Person" Association="NetballGameSystemModel.FK_VolunteerPerson_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="VolunteerPerson" EntitySet="VolunteerPersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VolunteerPerson_VolunteerTitle" Association="NetballGameSystemModel.FK_VolunteerPerson_VolunteerTitle">
+            <End Role="VolunteerTitle" EntitySet="VolunteerTitles" />
+            <End Role="VolunteerPerson" EntitySet="VolunteerPersons" />
+          </AssociationSet>
+          <FunctionImport Name="spPopulateGame" />
+          <FunctionImport Name="spPopulateGamePlayer" />
+          <FunctionImport Name="spPopulateGameTeam" />
+          <FunctionImport Name="spPopulatePerson" />
+          <FunctionImport Name="spPopulateTeamPlayer" />
+          <FunctionImport Name="UpdatePerson">
+            <Parameter Name="PersonID" Mode="In" Type="Int32" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="AwardPerson">
+          <Key>
+            <PropertyRef Name="AwardPersonID" />
+          </Key>
+          <Property Name="AwardPersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AwardID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="YearAward" Type="Int32" Nullable="false" />
+          <Property Name="DateOfAward" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Award" Relationship="NetballGameSystemModel.FK_AwardPerson_Awards" FromRole="AwardPerson" ToRole="Award" />
+          <NavigationProperty Name="Person" Relationship="NetballGameSystemModel.FK_AwardPerson_Person" FromRole="AwardPerson" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Award">
+          <Key>
+            <PropertyRef Name="AwardID" />
+          </Key>
+          <Property Name="AwardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AwardName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveInd" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AwardPersons" Relationship="NetballGameSystemModel.FK_AwardPerson_Awards" FromRole="Award" ToRole="AwardPerson" />
+        </EntityType>
+        <EntityType Name="CoachAssistant">
+          <Key>
+            <PropertyRef Name="AssistantCoachID" />
+          </Key>
+          <Property Name="AssistantCoachID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveInd" Type="Boolean" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Person" Relationship="NetballGameSystemModel.FK_CoachAssistant_Person" FromRole="CoachAssistant" ToRole="Person" />
+          <NavigationProperty Name="Team" Relationship="NetballGameSystemModel.FK_CoachAssistant_Team" FromRole="CoachAssistant" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="CommitteePerson">
+          <Key>
+            <PropertyRef Name="CommitteeMemberID" />
+          </Key>
+          <Property Name="CommitteeMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommitteePositionID" Type="Int32" Nullable="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="ActiveInd" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="VolunteerInd" Type="Boolean" />
+          <NavigationProperty Name="CommitteePosition" Relationship="NetballGameSystemModel.FK_CommitteeMembers_CommitteePosition" FromRole="CommitteePerson" ToRole="CommitteePosition" />
+          <NavigationProperty Name="Person" Relationship="NetballGameSystemModel.FK_CommitteeMembers_Person" FromRole="CommitteePerson" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="CommitteePosition">
+          <Key>
+            <PropertyRef Name="CommitteePositionID" />
+          </Key>
+          <Property Name="CommitteePositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommitteePosition1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveInd" Type="Boolean" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CommitteePersons" Relationship="NetballGameSystemModel.FK_CommitteeMembers_CommitteePosition" FromRole="CommitteePosition" ToRole="CommitteePerson" />
+        </EntityType>
+        <EntityType Name="TeamPlayerStatu">
+          <Key>
+            <PropertyRef Name="TeamPlayerStatusID" />
+          </Key>
+          <Property Name="TeamPlayerStatusID" Type="Int32" Nullable="false" />
+          <Property Name="TeamPlayerStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VolunteerPerson">
+          <Key>
+            <PropertyRef Name="VolunteerPersonID" />
+          </Key>
+          <Property Name="VolunteerPersonID" Type="Int32" Nullable="false" />
+          <Property Name="VolunteerTitleID" Type="Int32" />
+          <Property Name="PersonID" Type="Int32" />
+          <Property Name="ActiveInd" Type="Boolean" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Person" Relationship="NetballGameSystemModel.FK_VolunteerPerson_Person" FromRole="VolunteerPerson" ToRole="Person" />
+          <NavigationProperty Name="VolunteerTitle" Relationship="NetballGameSystemModel.FK_VolunteerPerson_VolunteerTitle" FromRole="VolunteerPerson" ToRole="VolunteerTitle" />
+        </EntityType>
+        <EntityType Name="VolunteerTitle">
+          <Key>
+            <PropertyRef Name="VolunteerTitleID" />
+          </Key>
+          <Property Name="VolunteerTitleID" Type="Int32" Nullable="false" />
+          <Property Name="VolunteerTitle1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ActiveInd" Type="Boolean" />
+          <NavigationProperty Name="VolunteerPersons" Relationship="NetballGameSystemModel.FK_VolunteerPerson_VolunteerTitle" FromRole="VolunteerTitle" ToRole="VolunteerPerson" />
+        </EntityType>
+        <Association Name="FK_AwardPerson_Awards">
+          <End Type="NetballGameSystemModel.Award" Role="Award" Multiplicity="1" />
+          <End Type="NetballGameSystemModel.AwardPerson" Role="AwardPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Award">
+              <PropertyRef Name="AwardID" />
+            </Principal>
+            <Dependent Role="AwardPerson">
+              <PropertyRef Name="AwardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AwardPerson_Person">
+          <End Type="NetballGameSystemModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="NetballGameSystemModel.AwardPerson" Role="AwardPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="AwardPerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoachAssistant_Person">
+          <End Type="NetballGameSystemModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="NetballGameSystemModel.CoachAssistant" Role="CoachAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CoachAssistant">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoachAssistant_Team">
+          <End Type="NetballGameSystemModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="NetballGameSystemModel.CoachAssistant" Role="CoachAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="CoachAssistant">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommitteeMembers_CommitteePosition">
+          <End Type="NetballGameSystemModel.CommitteePosition" Role="CommitteePosition" Multiplicity="1" />
+          <End Type="NetballGameSystemModel.CommitteePerson" Role="CommitteePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommitteePosition">
+              <PropertyRef Name="CommitteePositionID" />
+            </Principal>
+            <Dependent Role="CommitteePerson">
+              <PropertyRef Name="CommitteePositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommitteeMembers_Person">
+          <End Type="NetballGameSystemModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="NetballGameSystemModel.CommitteePerson" Role="CommitteePerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="CommitteePerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VolunteerPerson_Person">
+          <End Type="NetballGameSystemModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="NetballGameSystemModel.VolunteerPerson" Role="VolunteerPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="VolunteerPerson">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VolunteerPerson_VolunteerTitle">
+          <End Type="NetballGameSystemModel.VolunteerTitle" Role="VolunteerTitle" Multiplicity="0..1" />
+          <End Type="NetballGameSystemModel.VolunteerPerson" Role="VolunteerPerson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VolunteerTitle">
+              <PropertyRef Name="VolunteerTitleID" />
+            </Principal>
+            <Dependent Role="VolunteerPerson">
+              <PropertyRef Name="VolunteerTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NetballGameSystemModelStoreContainer" CdmEntityContainer="NetballEntities">
+          <EntitySetMapping Name="Coaches">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Coach">
+              <MappingFragment StoreEntitySet="Coach">
+                <ScalarProperty Name="CoachID" ColumnName="CoachID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="CoachPersonID" ColumnName="CoachPersonID" />
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courts">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Court">
+              <MappingFragment StoreEntitySet="Court">
+                <ScalarProperty Name="CourtID" ColumnName="CourtID" />
+                <ScalarProperty Name="Court1" ColumnName="Court" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Divisions">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="Division1" ColumnName="Division" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="CourtID" ColumnName="CourtID" />
+                <ScalarProperty Name="TournamentID" ColumnName="TournamentID" />
+                <ScalarProperty Name="MatchNo" ColumnName="MatchNo" />
+                <ScalarProperty Name="Venue" ColumnName="Venue" />
+                <ScalarProperty Name="DatePlayed" ColumnName="DatePlayed" />
+                <ScalarProperty Name="PrimaryUmpireID" ColumnName="PrimaryUmpireID" />
+                <ScalarProperty Name="SecondaryUmpireID" ColumnName="SecondaryUmpireID" />
+                <ScalarProperty Name="ReserveUmpireID" ColumnName="ReserveUmpireID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="FullTime" ColumnName="FullTime" />
+                <ScalarProperty Name="ExtraTimeEnd" ColumnName="ExtraTimeEnd" />
+                <ScalarProperty Name="MatchWonByTeamID" ColumnName="MatchWonByTeamID" />
+                <ScalarProperty Name="Scorer1ID" ColumnName="Scorer1ID" />
+                <ScalarProperty Name="Scorer2ID" ColumnName="Scorer2ID" />
+                <ScalarProperty Name="TimeKeeper1ID" ColumnName="TimeKeeper1ID" />
+                <ScalarProperty Name="TimeKeeper2ID" ColumnName="TimeKeeper2ID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GamePlayers">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.GamePlayer">
+              <MappingFragment StoreEntitySet="GamePlayer">
+                <ScalarProperty Name="GamePlayerID" ColumnName="GamePlayerID" />
+                <ScalarProperty Name="GameTeamID" ColumnName="GameTeamID" />
+                <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+                <ScalarProperty Name="FirstQuarterInd" ColumnName="FirstQuarterInd" />
+                <ScalarProperty Name="SecondQuarterInd" ColumnName="SecondQuarterInd" />
+                <ScalarProperty Name="ThirdQuarterInd" ColumnName="ThirdQuarterInd" />
+                <ScalarProperty Name="FourthQuarterInd" ColumnName="FourthQuarterInd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameQuarters">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.GameQuarter">
+              <MappingFragment StoreEntitySet="GameQuarter">
+                <ScalarProperty Name="GameQuarterID" ColumnName="GameQuarterID" />
+                <ScalarProperty Name="GameTeamID" ColumnName="GameTeamID" />
+                <ScalarProperty Name="QuarterTypeID" ColumnName="QuarterTypeID" />
+                <ScalarProperty Name="CtrPass" ColumnName="CtrPass" />
+                <ScalarProperty Name="TeamGS" ColumnName="TeamGS" />
+                <ScalarProperty Name="TeamGA" ColumnName="TeamGA" />
+                <ScalarProperty Name="GoalShotAttempt" ColumnName="GoalShotAttempt" />
+                <ScalarProperty Name="GoalShotScored" ColumnName="GoalShotScored" />
+                <ScalarProperty Name="QuarterScore" ColumnName="QuarterScore" />
+                <ScalarProperty Name="ProgressiveScore" ColumnName="ProgressiveScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameTeams">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.GameTeam">
+              <MappingFragment StoreEntitySet="GameTeam">
+                <ScalarProperty Name="GameTeamID" ColumnName="GameTeamID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="CaptainID" ColumnName="CaptainID" />
+                <ScalarProperty Name="CoachID" ColumnName="CoachID" />
+                <ScalarProperty Name="PrimaryCarerID" ColumnName="PrimaryCarerID" />
+                <ScalarProperty Name="FinalScore" ColumnName="FinalScore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmergencyContactNo" ColumnName="EmergencyContactNo" />
+                <ScalarProperty Name="EmergencyContact" ColumnName="EmergencyContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuarterTypes">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.QuarterType">
+              <MappingFragment StoreEntitySet="QuarterType">
+                <ScalarProperty Name="QuarterTypeID" ColumnName="QuarterTypeID" />
+                <ScalarProperty Name="QuarterType1" ColumnName="QuarterType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="CoachID" ColumnName="CoachID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="CaptainID" ColumnName="CaptainID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamPlayers">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.TeamPlayer">
+              <MappingFragment StoreEntitySet="TeamPlayer">
+                <ScalarProperty Name="TeamPlayerID" ColumnName="TeamPlayerID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+                <ScalarProperty Name="CaptainInd" ColumnName="CaptainInd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tournaments">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Tournament">
+              <MappingFragment StoreEntitySet="Tournament">
+                <ScalarProperty Name="TournamentID" ColumnName="TournamentID" />
+                <ScalarProperty Name="Tournament1" ColumnName="Tournament" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AwardPersons">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.AwardPerson">
+              <MappingFragment StoreEntitySet="AwardPerson">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DateOfAward" ColumnName="DateOfAward" />
+                <ScalarProperty Name="YearAward" ColumnName="YearAward" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="AwardID" ColumnName="AwardID" />
+                <ScalarProperty Name="AwardPersonID" ColumnName="AwardPersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Awards">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.Award">
+              <MappingFragment StoreEntitySet="Awards">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+                <ScalarProperty Name="AwardName" ColumnName="AwardName" />
+                <ScalarProperty Name="AwardID" ColumnName="AwardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoachAssistants">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.CoachAssistant">
+              <MappingFragment StoreEntitySet="CoachAssistant">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="AssistantCoachID" ColumnName="AssistantCoachID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommitteePersons">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.CommitteePerson">
+              <MappingFragment StoreEntitySet="CommitteePerson">
+                <ScalarProperty Name="VolunteerInd" ColumnName="VolunteerInd" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="CommitteePositionID" ColumnName="CommitteePositionID" />
+                <ScalarProperty Name="CommitteeMemberID" ColumnName="CommitteeMemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommitteePositions">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.CommitteePosition">
+              <MappingFragment StoreEntitySet="CommitteePosition">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+                <ScalarProperty Name="CommitteePosition1" ColumnName="CommitteePosition" />
+                <ScalarProperty Name="CommitteePositionID" ColumnName="CommitteePositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamPlayerStatus">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.TeamPlayerStatu">
+              <MappingFragment StoreEntitySet="TeamPlayerStatus">
+                <ScalarProperty Name="TeamPlayerStatus" ColumnName="TeamPlayerStatus" />
+                <ScalarProperty Name="TeamPlayerStatusID" ColumnName="TeamPlayerStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VolunteerPersons">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.VolunteerPerson">
+              <MappingFragment StoreEntitySet="VolunteerPerson">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="VolunteerTitleID" ColumnName="VolunteerTitleID" />
+                <ScalarProperty Name="VolunteerPersonID" ColumnName="VolunteerPersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VolunteerTitles">
+            <EntityTypeMapping TypeName="NetballGameSystemModel.VolunteerTitle">
+              <MappingFragment StoreEntitySet="VolunteerTitle">
+                <ScalarProperty Name="ActiveInd" ColumnName="ActiveInd" />
+                <ScalarProperty Name="VolunteerTitle1" ColumnName="VolunteerTitle" />
+                <ScalarProperty Name="VolunteerTitleID" ColumnName="VolunteerTitleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spPopulateGame" FunctionName="NetballGameSystemModel.Store.spPopulateGame" />
+          <FunctionImportMapping FunctionImportName="spPopulateGamePlayer" FunctionName="NetballGameSystemModel.Store.spPopulateGamePlayer" />
+          <FunctionImportMapping FunctionImportName="spPopulateGameTeam" FunctionName="NetballGameSystemModel.Store.spPopulateGameTeam" />
+          <FunctionImportMapping FunctionImportName="spPopulatePerson" FunctionName="NetballGameSystemModel.Store.spPopulatePerson" />
+          <FunctionImportMapping FunctionImportName="spPopulateTeamPlayer" FunctionName="NetballGameSystemModel.Store.spPopulateTeamPlayer" />
+          <FunctionImportMapping FunctionImportName="UpdatePerson" FunctionName="NetballGameSystemModel.Store.UpdatePerson" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,112 @@
+﻿@*@model PagedList.IPagedList<ClassLibrary.Models.TeamModel>*@
+@model ClassLibrary.Models.TeamIndexModel
+
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "TeamModel", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                    <h5>Select a team:</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.DropDownListFor(model => model.teamID,
+                        new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(@ViewBag.teamID??0),
+                        "Value",
+                        "Text",
+                        Model.teamID),
+                        new { @class = "select", style = "width: 200px"  })
+                </div>
+            </div>
+            <div></div>
+            <div class="row">
+                <div class="col-md-1">
+                    <input id="Submit1" type="submit" value="Search" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <p style="margin-top:0; margin-bottom:0; line-height:.5"><br /></p>
+
+    <table class="table">
+        <tr>
+            <th>
+                Team Name
+            </th>
+            <th>
+                Coach Name
+            </th>
+            <th>
+                Division Name
+            </th>
+            <th>
+                Captain Name
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.TeamPagedList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.coachName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.divisionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.captainName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.coachPersonID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.divisionID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.captainID)
+                </td>
+                <td>
+                    @Html.ActionLink(
+                        linkText: "Edit Team",
+                        actionName: "Edit",
+                        controllerName: "TeamModel",
+                        routeValues: new { teamID = item.teamID},
+                        htmlAttributes: null) |
+
+                    @Html.ActionLink(
+                        linkText: "Edit Coach",
+                        actionName: "Edit",
+                        controllerName: "Coach",
+                        routeValues: new { personID = item.coachPersonID},
+                        htmlAttributes: null) |               
+
+                    @Html.ActionLink(
+                        linkText: "View Team Players", 
+                        actionName:"Index",
+                        controllerName: "TeamPlayerModel",
+                        routeValues :new { teamID = item.teamID },
+                        htmlAttributes: null)
+                </td>
+            </tr>
+        }
+    </table>
+
+Page @(Model.TeamPagedList.PageCount < Model.TeamPagedList.PageNumber ? 0 : Model.TeamPagedList.PageNumber) of @Model.TeamPagedList.PageCount
+
+@Html.PagedListPager(Model.TeamPagedList, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, teamID = ViewBag.teamID }))

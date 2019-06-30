@@ -1,0 +1,129 @@
+﻿@model ClassLibrary.Models.GameIndexModel
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <div class="col-md-1">
+        @Html.Label("Team Name")
+    </div>
+    <div class="col-md-3">
+        @Html.DropDownListFor(model => model.teamID,
+            new
+            SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.teamID),
+            "Value",
+            "Text",
+            Model.teamID),
+            new { @class = "select" })
+    </div>
+    <div class="col-md-1">
+        @Html.Label("Date Played")
+    </div>
+    <div class="col-md-2">
+        @Html.TextBoxFor(model => model.datePlayed, ViewBag.datePlayed as string, new { type = "date" })
+    </div>
+    <div class="col-md-1">
+        <input type="submit" value="Search" />
+    </div>
+    @*<div class="col-md-1">
+        @Html.TextBoxFor(model => model.teamName, ViewBag.teamName as string)
+    </div>*@
+    <p>
+        @if (ViewBag.datePlayed != null)
+        {
+        <input type="date" name="filterStartDate" id="filterStartDate" class="form-control date" value="@ViewBag.datePlayed.ToString("yyyy-MM-dd")" />
+        }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Date Played
+            </th>
+            <th>
+                Primary Umpire
+            </th>
+            <th>
+                Team 1
+            </th>
+            <th>
+                Team Captain
+            </th>
+            <th>
+                Team Coach
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                Team 2
+            </th>
+            <th>
+                Team Captain
+            </th>
+            <th>
+                Coach
+            </th>
+            <th>
+                Score
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model.GamePagedList)
+    {
+        <tr>
+            <td>
+                @item.datePlayed.ToString("dd MMM yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.primaryUmpire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.team1Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.captain1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.coach1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.team1ScoreFinal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.team2Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.captain2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.coach2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.team2ScoreFinal)
+            </td>
+            <td>
+                @Html.ActionLink(
+                    linkText: "Details",
+                    actionName: "Edit",
+                    controllerName: "Game",
+                    routeValues: new { gameID = item.gameID, controllerName = "GameMatch", viewName = "Index" },
+                    htmlAttributes: null)
+            </td>
+        </tr>
+    }
+    </table>
+}
+@if (Model != null && Model.GamePagedList.PageCount > 0)
+{
+    <div>
+        Page @(Model.GamePagedList.PageCount < Model.GamePagedList.PageNumber ? 0:
+        Model.GamePagedList.PageNumber) of @Model.GamePagedList.PageCount
+        @Html.PagedListPager(Model.GamePagedList, page => Url.Action("Index",
+       new { page, teamID = ViewBag.teamID, datePlayed = ViewBag.datePlayed, teamName = ViewBag.teamName } ))
+    </div>
+}

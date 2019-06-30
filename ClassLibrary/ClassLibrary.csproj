@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66108E41-5DC9-4BE8-9036-944542FC7A4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClassLibrary</RootNamespace>
+    <AssemblyName>ClassLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.1.3\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.Mvc5.8.1.3\lib\net45\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.ValidatorAttribute, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.ValidatorAttribute.8.1.3\lib\net45\FluentValidation.ValidatorAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit, Version=1.1.15.0, Culture=neutral, PublicKeyToken=bc217f8844052a91, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqKit.1.1.15\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\Award.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\AwardPerson.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Coach.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CoachAssistant.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CommitteePerson.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CommitteePosition.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Court.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Division.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Game.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\GamePlayer.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\GameQuarter.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\GameTeam.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TeamPlayerStatu.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\VolunteerPerson.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\VolunteerTitle.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\AwardLogic\AwardDelete.cs" />
+    <Compile Include="Logic\AwardLogic\AwardInsert.cs" />
+    <Compile Include="Logic\AwardLogic\AwardSelect.cs" />
+    <Compile Include="Logic\AwardLogic\AwardSelectList.cs" />
+    <Compile Include="Logic\AwardLogic\AwardUpdate.cs" />
+    <Compile Include="Logic\AwardLogic\IAwardDelete.cs" />
+    <Compile Include="Logic\AwardLogic\IAwardInsert.cs" />
+    <Compile Include="Logic\AwardLogic\IAwardUpdate.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardListToAwardModelListConverter.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelUpdateLogic .cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelInsertLogic.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelSelect.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelSelectList.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelToAwardConverter.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardToAwardModelConverter.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelDeleteLogic.cs" />
+    <Compile Include="Logic\AwardModelLogic\AwardModelPagedList.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelDeleteLogic.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelInsertLogic.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelSelect.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelSelectList.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelToAwardConverter.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelUpdateLogic.cs" />
+    <Compile Include="Logic\AwardModelLogic\IAwardModelPagedList.cs" />
+    <Compile Include="Logic\AwardPersonLogic\AwardPersonSelectList.cs" />
+    <Compile Include="Logic\AwardPersonModelLogic\AwardPersonListToAwardPersonModelListConverter.cs" />
+    <Compile Include="Logic\AwardPersonModelLogic\AwardPersonToAwardPersonModelConverter.cs" />
+    <Compile Include="Logic\CaptainLogic\CaptainSelect.cs" />
+    <Compile Include="Logic\CaptainLogic\CaptainSelectList.cs" />
+    <Compile Include="Logic\CaptainLogic\CheckCaptainLogic.cs" />
+    <Compile Include="Logic\CaptainLogic\ICaptainSelect.cs" />
+    <Compile Include="Logic\CaptainLogic\ICaptainSelectList.cs" />
+    <Compile Include="Logic\CaptainLogic\ICheckCaptainLogic.cs" />
+    <Compile Include="Logic\CoachLogic\CoachInsert.cs" />
+    <Compile Include="Logic\CoachLogic\ICoachInsert.cs" />
+    <Compile Include="Logic\CoachModelLogic1\CoachModelPagedListLogic1.cs" />
+    <Compile Include="Logic\CoachModelLogic1\CoachModelSelectListLogic1.cs" />
+    <Compile Include="Logic\CoachModelLogic1\GetCoachModelLogic1.cs" />
+    <Compile Include="Logic\CoachModelLogic1\GetCoachModelListByEmailLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\GetCoachModelListByMobileLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\GetCoachModelListByNameLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\GetCoachModelListByTeamLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\ICoachModelPagedListLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\ICoachModelSelectListLogic1.cs" />
+    <Compile Include="Logic\CoachModelLogic1\IGetCoachModel1.cs" />
+    <Compile Include="Logic\CoachModelLogic1\IGetCoachModelListByEmailLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\IGetCoachModelListByMobileLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\IGetCoachModelListByNameLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\IGetCoachModelListByTeamLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic1\IGetCoachModelListLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelCheckLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelListLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelPagedListLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelParseLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelSelectLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelSelectTeam.cs" />
+    <Compile Include="Logic\CoachModelLogic\GetCoachModelLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelCheckLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelListLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelPageListLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelParseLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelSelectLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelSelectTeam.cs" />
+    <Compile Include="Logic\CoachModelLogic\IGetCoachModelLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\ICoachModelInsertLogic.cs" />
+    <Compile Include="Logic\CoachModelLogic\CoachModelInsertLogic.cs" />
+    <Compile Include="Logic\CourtLogic\CourtSelect.cs" />
+    <Compile Include="Logic\CourtLogic\CourtSelectList.cs" />
+    <Compile Include="Logic\CourtLogic\ICourtSelect.cs" />
+    <Compile Include="Logic\CourtLogic\ICourtSelectList.cs" />
+    <Compile Include="Logic\DivisionIndexModelLogic\DivisionIndexModelSelectListLogic.cs" />
+    <Compile Include="Logic\DivisionIndexModelLogic\IDivisionIndexModelSelectListLogic.cs" />
+    <Compile Include="Logic\DivisionLogic\DivisionSelect.cs" />
+    <Compile Include="Logic\DivisionLogic\DivisionSelectList.cs" />
+    <Compile Include="Logic\DivisionLogic\IDivisionSelect.cs" />
+    <Compile Include="Logic\DivisionLogic\IDivisionSelectList.cs" />
+    <Compile Include="Logic\DivisionModelLogic\DivisionModelListLogic.cs" />
+    <Compile Include="Logic\DivisionModelLogic\DivisionModelPagedListLogic.cs" />
+    <Compile Include="Logic\DivisionModelLogic\IDivisionModelListLogic.cs" />
+    <Compile Include="Logic\DivisionModelLogic\IDivisionModelPagedListLogic.cs" />
+    <Compile Include="Logic\DropDownListLogic.cs" />
+    <Compile Include="Logic\GameIndexModelLogic\GameIndexModelParameterLogic.cs" />
+    <Compile Include="Logic\GameIndexModelLogic\IGameIndexModelParameterLogic.cs" />
+    <Compile Include="Logic\GameIndexModelLogic\IGameIndexModelInitialiseLogic.cs" />
+    <Compile Include="Logic\GameIndexModelLogic\GameIndexModelInitialiseLogic.cs" />
+    <Compile Include="Logic\GameLogic\GameInsert.cs" />
+    <Compile Include="Logic\GameLogic\GameParse.cs" />
+    <Compile Include="Logic\GameLogic\GameUpdate.cs" />
+    <Compile Include="Logic\GameLogic\IGameInsert.cs" />
+    <Compile Include="Logic\GameLogic\IGameParse.cs" />
+    <Compile Include="Logic\GameLogic\IGameUpdate.cs" />
+    <Compile Include="Logic\GameMatchModelLogic\GameMatchModelSelectLogic.cs" />
+    <Compile Include="Logic\GameMatchModelLogic\IGameMatchModelSelectLogic.cs" />
+    <Compile Include="Logic\GameModelListLogic\GameModelListLogic.cs" />
+    <Compile Include="Logic\GameModelListLogic\GameModelListParameterLogic.cs" />
+    <Compile Include="Logic\GameModelListLogic\GameModelPagedListLogic.cs" />
+    <Compile Include="Logic\GameModelListLogic\IGameModelListLogic.cs" />
+    <Compile Include="Logic\GameModelListLogic\IGameModelListParameterLogic.cs" />
+    <Compile Include="Logic\GameModelListLogic\IGameModelPagedListLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModeIInsertLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModelCheckDuplicateLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModelCheckLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModelCheckTeams.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModelDetailLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModelSelectLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\GameModelUpdateLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelCheckDuplicateLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelCheckLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelCheckTeams.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelDetailLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelInsertLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelSelectLogic.cs" />
+    <Compile Include="Logic\GameModelLogic\IGameModelUpdateLogic.cs" />
+    <Compile Include="Logic\GamePlayerLogic\GamePlayerDelete.cs" />
+    <Compile Include="Logic\GamePlayerLogic\GamePlayerInsert.cs" />
+    <Compile Include="Logic\GamePlayerLogic\GamePlayerParse.cs" />
+    <Compile Include="Logic\GamePlayerLogic\GamePlayerSelect.cs" />
+    <Compile Include="Logic\GamePlayerLogic\GamePlayerUpdate.cs" />
+    <Compile Include="Logic\GamePlayerLogic\IGamePlayerDelete.cs" />
+    <Compile Include="Logic\GamePlayerLogic\IGamePlayerInsert.cs" />
+    <Compile Include="Logic\GamePlayerLogic\IGamePlayerParse.cs" />
+    <Compile Include="Logic\GamePlayerLogic\IGamePlayerSelect.cs" />
+    <Compile Include="Logic\GamePlayerLogic\IGamePlayerUpdate.cs" />
+    <Compile Include="Logic\GameTeamLogic\GameTeamInsert.cs" />
+    <Compile Include="Logic\GameTeamLogic\GameTeamParse.cs" />
+    <Compile Include="Logic\GameTeamLogic\GameTeamSelect.cs" />
+    <Compile Include="Logic\GameTeamLogic\GameTeamUpdate.cs" />
+    <Compile Include="Logic\GameTeamLogic\IGameTeamInsert.cs" />
+    <Compile Include="Logic\GameTeamLogic\IGameTeamParse.cs" />
+    <Compile Include="Logic\GameTeamLogic\IGameTeamSelect.cs" />
+    <Compile Include="Logic\GameTeamLogic\IGameTeamUpdate.cs" />
+    <Compile Include="Logic\GameTeamModelLogic\GameTeamModelSelect.cs" />
+    <Compile Include="Logic\GameTeamModelLogic\GameTeamModelSelectList.cs" />
+    <Compile Include="Logic\GameTeamModelLogic\IGameTeamModelSelect.cs" />
+    <Compile Include="Logic\GameTeamModelLogic\IGameTeamModelSelectList.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelCheck.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelDelete.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelInsert.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelPagedList.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelSelect.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelSelectList.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\GameTeamPlayerModelUpdate.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelCheck.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelDelete.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelInsert.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelPagedList.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelSelect.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelSelectList.cs" />
+    <Compile Include="Logic\GameTeamPlayerModelLogic\IGameTeamPlayerModelUpdate.cs" />
+    <Compile Include="Logic\InterfaceDemoLogic\Garvin.cs" />
+    <Compile Include="Logic\InterfaceDemoLogic\HtayHtay.cs" />
+    <Compile Include="Logic\InterfaceDemoLogic\IPeople.cs" />
+    <Compile Include="Logic\PersonLogic\IPersonInsert.cs" />
+    <Compile Include="Logic\PersonLogic\IPersonSelect.cs" />
+    <Compile Include="Logic\PersonLogic\IPersonUpdate.cs" />
+    <Compile Include="Logic\PersonLogic\PersonInsert.cs" />
+    <Compile Include="Logic\PersonLogic\PersonSelect.cs" />
+    <Compile Include="Logic\PersonLogic\PersonSelectListLogic.cs" />
+    <Compile Include="Logic\PersonLogic\PersonUpdate.cs" />
+    <Compile Include="Logic\PlayerIndexModelLogic\IPlayerIndexModelSelectLogic.cs" />
+    <Compile Include="Logic\PlayerIndexModelLogic\PlayerIndexModelSelectLogic.cs" />
+    <Compile Include="Logic\PlayerMatchModelLogic\IPlayerMatchModelSelect.cs" />
+    <Compile Include="Logic\PlayerMatchModelLogic\PlayerMatchModelSelect.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelPageList.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelCheckLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelCheckLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelInsertLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelInsertLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelDeleteLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelListLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelParse.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelSaveLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IPlayerModelSelect.cs" />
+    <Compile Include="Logic\PlayerModelLogic\IUpdatePlayerModelLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelDeleteLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelListLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelPageList.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelParse.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelSaveLogic.cs" />
+    <Compile Include="Logic\PlayerModelLogic\PlayerModelSelect.cs" />
+    <Compile Include="Logic\PlayerModelLogic\UpdatePlayerModelLogic.cs" />
+    <Compile Include="Logic\TeamLogic\ITeamParseLogic.cs" />
+    <Compile Include="Logic\TeamLogic\ITeamSelectLogic.cs" />
+    <Compile Include="Logic\TeamLogic\ITeamUpdate.cs" />
+    <Compile Include="Logic\TeamLogic\TeamParseLogic.cs" />
+    <Compile Include="Logic\TeamLogic\TeamSelectLogic.cs" />
+    <Compile Include="Logic\TeamLogic\TeamUpdateLogic.cs" />
+    <Compile Include="Logic\TeamModelLogic\ITeamModelListLogic.cs" />
+    <Compile Include="Logic\TeamModelLogic\ITeamModelSelectLogic.cs" />
+    <Compile Include="Logic\TeamModelLogic\TeamModelListLogic.cs" />
+    <Compile Include="Logic\TeamModelLogic\TeamModelSelectLogic.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\ITeamPlayersDelete.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\ITeamPlayerSelectList.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\ITeamPlayersInsert.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\ITeamPlayersSaveLogic.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\ITeamPlayersSelect.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\ITeamPlayersUpdate.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\TeamPlayersDelete.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\TeamPlayerSelectList.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\TeamPlayersInsert.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\TeamPlayersSaveLogic.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\TeamPlayersSelect.cs" />
+    <Compile Include="Logic\TeamPlayerLogic\TeamPlayersUpdate.cs" />
+    <Compile Include="Logic\TeamPlayerModelLogic\ITeamPlayerModelPagedList.cs" />
+    <Compile Include="Logic\TeamPlayerModelLogic\ITeamPlayerModelSelectList.cs" />
+    <Compile Include="Logic\TeamPlayerModelLogic\TeamPlayerModelPagedList.cs" />
+    <Compile Include="Logic\TeamPlayerModelLogic\TeamPlayerModelSelectList.cs" />
+    <Compile Include="Logic\TestLogic\TestChainConstruction.cs" />
+    <Compile Include="Models\AbstractPersonModel.cs" />
+    <Compile Include="Models\AwardModel.cs" />
+    <Compile Include="Models\AwardPersonModel.cs" />
+    <Compile Include="Models\CoachIndexModel.cs" />
+    <Compile Include="Models\CoachModel.cs" />
+    <Compile Include="Models\DivisionIndexModel.cs" />
+    <Compile Include="Models\DivisionModel.cs" />
+    <Compile Include="Models\GameIndexModel.cs" />
+    <Compile Include="Models\GameMatchModel.cs" />
+    <Compile Include="Models\GameModel.cs" />
+    <Compile Include="Models\GameQuarterModel.cs" />
+    <Compile Include="Models\GameTeamModel.cs" />
+    <Compile Include="Models\GameTeamPlayerModel.cs" />
+    <Compile Include="Models\PeopleModel.cs" />
+    <Compile Include="Models\IPersonModel.cs" />
+    <Compile Include="Models\PersonModel.cs" />
+    <Compile Include="Models\PlayerIndexModel.cs" />
+    <Compile Include="Models\PlayerMatchModel.cs" />
+    <Compile Include="Models\PlayerModel.cs" />
+    <Compile Include="Models\TeamIndexModel.cs" />
+    <Compile Include="Models\TeamModel.cs" />
+    <Compile Include="Models\TeamPlayerModel.cs" />
+    <Compile Include="Database\NetballEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetballEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NetballEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\NetballEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetballEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Person.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\QuarterType.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagram.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Team.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TeamPlayer.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Tournament.cs">
+      <DependentUpon>NetballEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\TeamLogic\TeamSelectList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Database\NetballEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NetballEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Database\NetballEntities.edmx.diagram">
+      <DependentUpon>NetballEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Database\NetballEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NetballEntities.Context.cs</LastGenOutput>
+      <DependentUpon>NetballEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\NetballEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NetballEntities.edmx</DependentUpon>
+      <LastGenOutput>NetballEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\GameQuarterLogic\" />
+    <Folder Include="Logic\QuarterTypeLogic\" />
+    <Folder Include="Logic\TournamentLogic\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

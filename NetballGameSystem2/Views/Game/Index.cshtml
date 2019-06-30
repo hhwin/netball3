@@ -1,0 +1,270 @@
+﻿@model ClassLibrary.Models.GameIndexModel
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+<h4>Game Details</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1" style="width:180px">
+                @Html.LabelFor(model => model.teamName)
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.teamID,
+                    new SelectList(ClassLibrary.Logic.Team.TeamSelectList.GetTeamSelectListStatic(Model.teamID),
+                    "Value",
+                    "Text",
+                    Model.teamID),
+                    new { @class = "select" })
+                @Html.ValidationMessageFor(model => model.teamID, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1" style="width:180px">
+                @Html.LabelFor(model => model.division)
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.divisionID,
+                    new SelectList(ClassLibrary.Logic.DivisionLogic.DivisionSelectList.GetDivisionSelectListStatic(Model.divisionID),
+                    "Value",
+                    "Text",
+                    Model.divisionID),
+                    new { @class = "select" })
+                @Html.ValidationMessageFor(model => model.divisionID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1" style="width:180px">
+                Date Played
+            </div>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.datePlayed, new { htmlAttributes = new { @class = "form-control" , @style = "width:160px; height:30px"} })
+            </div>
+            <div class="col-md-1">
+                <input type="submit" value="Search" />
+            </div>
+        </div>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            Court Name
+        </th>
+        <th>
+            Tournament Name
+        </th>
+        <th>
+            Match No
+        </th>
+        <th>
+            Venue
+        </th>
+        <th>
+            Date Played
+        </th>
+        <th>
+            Primary Umpire
+        </th>
+        <th>
+            Secondary Umpire
+        </th>
+        <th>
+            Reserve Umpire
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            Full Time
+        </th>
+        <th>
+            Extra Time
+        </th>
+        <th>
+            Scorer
+        </th>
+        <th>
+            Scorer
+        </th>
+        <th>
+            Time Keeper
+        </th>
+        <th>
+            Time Keeper
+        </th>
+        <th>
+            Division
+        </th>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Final Score
+        </th>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Final Score
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null && Model.GamePagedList != null && Model.GamePagedList.PageCount > 0)
+    {
+        foreach (var item in Model.GamePagedList)
+        {
+            <tr>
+                <td>
+                    <p style="width: 100px">
+                        @Html.DisplayFor(modelItem => item.courtName)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 100px">
+                        @Html.DisplayFor(modelItem => item.tournamentName)
+                    </p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.matchNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.venue)
+                </td>
+                <td>
+                    <p style="width: 100px">
+                        @item.datePlayed.ToString("dd MMM yyyy")
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.primaryUmpire)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.secondaryUmpire)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.reserveUmpire)
+                    </p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.startTimeString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullTimeString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.extraTimeEnd)
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.scorer1)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.scorer2)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.timeKeeper1)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.timeKeeper2)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 130px">
+                        @Html.DisplayFor(modelItem => item.division)
+                    </p>
+                </td>
+                <td>
+                    <p style="width: 150px">
+                        @Html.DisplayFor(modelItem => item.team1Name)
+                    </p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.team1ScoreFinal)
+                </td>
+                <td>
+                    <p style="width: 150px">
+                        @Html.DisplayFor(modelItem => item.team2Name)
+                    </p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.team2ScoreFinal)
+                </td>
+                <td>
+                    @Html.ActionLink(
+                linkText: "Edit",
+                actionName: "Edit",
+                routeValues: new { gameID = item.gameID })
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.courtID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.tournamentID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.primaryUmpireID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.secondaryUmpireID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.reserveUmpireID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.scorer1ID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.scorer2ID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.timeKeeper1ID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.timeKeeper2ID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.divisionID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.team1ID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.team2ID)
+                </td>
+            </tr>
+        }
+    }
+</table>
+<div>
+    @Html.ActionLink(
+   linkText: "Create New",
+   actionName: "Create",
+   routeValues: null,
+   htmlAttributes: new { @style = "width:150px" }
+   )
+</div>
+
+@if (Model != null && Model.GamePagedList != null && Model.GamePagedList.PageCount > 0)
+{
+<div>
+    Page @(Model.GamePagedList.PageCount < Model.GamePagedList.PageNumber ? 0 : Model.GamePagedList.PageNumber) of @Model.GamePagedList.PageCount
+    @Html.PagedListPager(Model.GamePagedList, page => Url.Action("Index", new { page, divisionID = ViewBag.DivisionID, teamID = ViewBag.TeamID, datePlayed = ViewBag.DatePlayed }))
+
+</div>
+
+}

@@ -1,0 +1,71 @@
+﻿@model PagedList.IPagedList<ClassLibrary.Models.CoachModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Coach Name
+        </th>
+        <th>
+            mobile
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Emergency Contact
+        </th>
+        <th>
+            Emergency Contact No
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.teamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.coachName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emergencyContact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emergencyContactNo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { personID = item.personID }) |
+            </td>
+        </tr>
+    }
+
+</table>
+@if (Model != null && Model.PageCount > 0)
+{
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}

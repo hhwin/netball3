@@ -1,0 +1,113 @@
+﻿@model PagedList.IPagedList<ClassLibrary.Models.PlayerModel>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Middle Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Mobile
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Emergency Contact
+        </th>
+        <th>
+            Emergency Contact No
+        </th>
+        <th>
+            Team Name
+        </th>
+        <th>
+            Captain
+        </th>       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.middleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emergencyContact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emergencyContactNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.teamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.captain)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.teamID)
+            </td>
+            <td>
+                @Html.ActionLink(
+                 controllerName: "Player",
+                 linkText: "Edit",
+                 actionName: "Edit",
+                 routeValues: new { playerID = item.personID, teamID = item.teamID, controllerName = "PlayerModel", viewName = "Index" },
+                 htmlAttributes: null
+                 )
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model != null && Model.PageCount > 0)
+{
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page,
+                gameTeamID = ViewBag.gameTeamID,
+                controllerName = ViewBag.controllerName,
+                viewName = ViewBag.viewName }))
+    </div>
+}
+
+@if (ViewBag.controllerName == "Division" && ViewBag.viewName == "Index")
+{
+    @Html.ActionLink(
+                         controllerName: "Division",
+                         linkText: "Back to list",
+                         actionName: "Index",
+                         routeValues: null,
+                         htmlAttributes: null
+                         )
+}
+

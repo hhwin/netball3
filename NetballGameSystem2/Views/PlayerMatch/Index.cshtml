@@ -1,0 +1,96 @@
+﻿@model ClassLibrary.Models.PlayerMatchModel
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Player Game History</h4>
+<div>
+    <div class="row">
+        <div class="col-md-1">
+            @Html.LabelFor(model => model.playerName, htmlAttributes: new {@class="control-label; width: 150px"})
+        </div>
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.playerName, new { htmlAttributes = new { @readonly = "readonly" } })
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Date Played
+        </th>
+        <th>
+            Team 1
+        </th>
+        <th>
+            Team 1 Score
+        </th>
+        <th>
+            Team 2
+        </th>
+        <th>
+            Team 2 Score
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model.gameMatchPagedList != null && Model.gameMatchPagedList.Count > 0)
+    {
+        foreach (var item in Model.gameMatchPagedList)
+        {
+            <tr>
+                <td>
+                    @item.datePlayed.ToString("dd MMM yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teamName1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teamScore1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teamName2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teamScore2)
+                </td>
+                <td>
+                    @Html.ActionLink(
+                    controllerName: "Game",
+                    linkText: "View Game Details",
+                    actionName: "Edit",
+                    routeValues: new { gameID = item.gameID, controllerName = ViewBag.controllerName, viewName = ViewBag.viewName, playerID = Model.personID },
+                    htmlAttributes: null
+                    )
+                </td>
+            </tr>
+        }
+    }
+</table>
+@if (Model.gameMatchPagedList != null && Model.gameMatchPagedList.Count > 0)
+{
+    <div>
+        Page @(Model.gameMatchPagedList.PageCount < Model.gameMatchPagedList.PageNumber ? 0 : Model.gameMatchPagedList.PageNumber) of @Model.gameMatchPagedList.PageCount
+        @Html.PagedListPager(Model.gameMatchPagedList,
+         page => Url.Action("Index",
+         new {
+             playerID = ViewBag.playerID,
+             controllerName = ViewBag.controllerName,
+             viewName = ViewBag.viewName,
+             page
+         }))
+    </div>
+}
+
+@if (ViewBag.controllerName == "Player" && ViewBag.viewName == "Index")
+{
+    @Html.ActionLink(
+                         controllerName: "Player",
+                         linkText: "Back to Player List",
+                         actionName: "Index",
+                         routeValues: new { teamID = ViewBag.teamID },
+                         htmlAttributes: null
+                         )
+}

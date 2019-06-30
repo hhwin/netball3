@@ -1,0 +1,148 @@
+﻿@model ClassLibrary.Models.GameTeamPlayerModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>GameTeamPlayerModel</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.teamName, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.teamName, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.courtName, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.courtName, new { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.courtName, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.tournamentName, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.tournamentName, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.matchNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.matchNo, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.venue, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.venue, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.datePlayed, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.datePlayedString, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.primaryUmpire, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.primaryUmpire, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.secondaryUmpire, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.secondaryUmpire, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.reserveUmpire, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.reserveUmpire, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.playerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.playerName, new { disabled = "disabled", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.firstQuarterInd, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                <div class="checkbox">
+                    @Html.DisplayFor(model => model.firstQuarterInd)
+                    @Html.ValidationMessageFor(model => model.firstQuarterInd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.secondQuarterInd, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.secondQuarterInd)
+                    @Html.ValidationMessageFor(model => model.secondQuarterInd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.thirdQuarterInd, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.thirdQuarterInd)
+                    @Html.ValidationMessageFor(model => model.thirdQuarterInd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                @Html.LabelFor(model => model.fourthQuarterInd, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-3">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.fourthQuarterInd)
+                    @Html.ValidationMessageFor(model => model.fourthQuarterInd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="row">
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    @Html.ActionLink(
+                        linkText: "Back to List",
+                        actionName: "Index",
+                        routeValues: new { gameTeamID = Model.gameTeamID },
+                        htmlAttributes: null)
+                </div>
+            </div>
+        </div>
+ }
+    </div>

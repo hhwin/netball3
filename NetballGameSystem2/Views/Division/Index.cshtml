@@ -1,0 +1,79 @@
+﻿@model ClassLibrary.Models.DivisionIndexModel
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <div class="col-md-3">
+        @Html.DropDownListFor(Model => Model.DivisionID,
+                  new SelectList(ClassLibrary.Logic.DivisionLogic.DivisionSelectList.GetDivisionSelectListStatic(Model.DivisionID),
+                  "Value",
+                  "Text",
+                  Model.DivisionID),
+                  new { @class = "select" })
+        @Html.ValidationMessageFor(model => model.DivisionID, "", new { @class = "text-danger" })
+    </div>
+    <div class="col-md-1">
+        <input type="submit" value="Search" />
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+            Division
+            </th>
+            <th>
+                Team Name
+            </th>
+            <th>
+                Coach Name
+            </th>
+            <th>
+                Captain
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.divisionModelPagedList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.division)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.teamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.coach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.captain)
+                </td>
+                <td>
+                    @Html.ActionLink(
+                    linkText: "Details",
+                    actionName: "Index",
+                    controllerName: "PlayerModel",
+                    routeValues: new { teamID = item.teamID, controllerName = "Division", viewName ="Index" },
+                    htmlAttributes: new { @style = "width:150px" }
+                    )
+                </td>
+            </tr>
+
+        }
+    </table>
+}
+@if (Model.divisionModelPagedList != null && Model.divisionModelPagedList.Count > 0)
+{
+    <div>
+        Page @(Model.divisionModelPagedList.Count < Model.divisionModelPagedList.PageNumber ? 0 : Model.divisionModelPagedList.PageNumber) of @Model.pageCount
+        @Html.PagedListPager(Model.divisionModelPagedList, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}

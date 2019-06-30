@@ -1,0 +1,187 @@
+﻿@model PagedList.IPagedList<ClassLibrary.Models.GameTeamPlayerModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink(
+     linkText: "Create New",
+     actionName: "Create",
+    routeValues: new { gameTeamID = ViewBag.gameTeamID},
+    htmlAttributes: null
+     )
+</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+            Team Name
+        </div>
+        <div class="col-md-3">
+            <b>
+                @ViewBag.teamName
+            </b>
+        </div>
+        <div class="col-md-1">
+            Court Name
+        </div>
+        <div class="col-md-3">
+            <b>@ViewBag.courtName</b>
+        </div>
+        <div class="col-md-1">
+            Match No
+        </div>
+        <div class="col-md-3">
+            <b>@ViewBag.matchNo</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            Venue
+        </div>
+        <div class="col-md-3">
+            <b>@ViewBag.venue</b>
+        </div>
+        <div class="col-md-1">
+            Date Played
+        </div>
+        <div class="col-md-3">
+            @if (ViewBag.datePlayed != null)
+            {
+                <b> @ViewBag.datePlayed.ToString("dd MMM yyyy")</b>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            Primary Umpire
+        </div>
+        <div class="col-md-3">
+            <b>@ViewBag.primaryUmpire</b>
+        </div>
+        <div class="col-md-1">
+            Secondary Umpire
+        </div>
+        <div class="col-md-3">
+            <b>@ViewBag.secondaryUmpire</b>
+        </div>
+        <div class="col-md-1">
+            Reserve Umpire
+        </div>
+        <div class="col-md-3">
+            <b>@ViewBag.reserveUmpire</b>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Player Name
+        </th>
+        <th>
+            First Quarter
+        </th>
+        <th>
+            Second Quarter
+        </th>
+        <th>
+            Third Quarter
+        </th>
+        <th>
+            Fourth Quarter
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.playerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstQuarterInd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.secondQuarterInd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.thirdQuarterInd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fourthQuarterInd)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.teamID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.tournamentID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.primaryUmpireID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.secondaryUmpireID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.gameID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.courtID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.reserveUmpireID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.playerID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.gamePlayerID)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.gameTeamID)
+                </td>
+                <td>
+                    @Html.ActionLink(
+                      linkText: "Edit",
+                      actionName: "Edit",
+                     routeValues: new { gamePlayerID = item.gamePlayerID },
+                     htmlAttributes: null
+                      ) |
+                    @Html.ActionLink(
+                    linkText: "Delete",
+                    actionName: "Delete",
+                    routeValues: new { gamePlayerID = item.gamePlayerID },
+                    htmlAttributes: null)
+                </td>
+            </tr>
+        }
+    }
+</table>
+<div class="row">
+    <div class="col-md-2">
+        @Html.ActionLink(
+         controllerName: "Game",
+         linkText: "Back to game details",
+         actionName: "Edit",
+         routeValues: new { gameID = ViewBag.gameID },
+         htmlAttributes: null
+         )
+    </div>
+</div>
+
+@if (Model != null && Model.PageCount > 0)
+{
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, gameTeamID = ViewBag.gameTeamID }))
+    </div>
+}
+
